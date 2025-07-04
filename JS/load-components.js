@@ -15,11 +15,19 @@ async function loadComponent(id, file){
 async function init(){
 
     const userStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
+    
+    if (userStatus === null || userStatus === false) {
 
-   
+        const guestUser = {
+        username: "Guest",
+        email: "guest@example.com",
+        password: "",
+        telephone: "",
+        birthday: ""
+        };
 
-    if((userStatus !== true || userStatus === null) && !window.location.pathname.includes("index.html")){
-        window.location.href = "index.html";
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        localStorage.setItem("userData", JSON.stringify(guestUser));
     }
 
     const components = [
@@ -36,19 +44,16 @@ async function init(){
 
     const loggedIn = document.querySelector(".header-right");
     const logInButton = document.querySelector(".log-inHBtn");
-    const headerMenu = document.querySelector(".optionsBtn");
 
-    if((userStatus !== true || userStatus === null) && window.location.pathname.includes("index.html")){
+    if((userStatus !== true || userStatus === null)){
         
         loggedIn.classList.remove("logInVis");
         logInButton.classList.add("logInVis");
-        headerMenu.classList.remove("logInVis");
         
     }else{
 
         logInButton.classList.remove("logInVis");
         loggedIn.classList.add("logInVis");       
-        headerMenu.classList.add("logInVis");
     }
 
     

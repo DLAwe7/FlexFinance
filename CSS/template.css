@@ -144,7 +144,7 @@ nav{
 }
 
 .optionsBtn{
-    display: none;
+    display: flex;
     cursor: pointer; 
     background: none;
     border: none;
