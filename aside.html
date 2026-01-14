@@ -1,8 +1,10 @@
-<div class="closingButton">
+<nav aria-label="sidebar-navigation" class="sidebar-navigation">
 
-    <button id="closingButton" aria-label="Close Sidebar">
+    <div class="closingButton">
 
-        <i class="fa-solid fa-xmark"></i>
+    <button class="main-sidebar-toggle" id="closingButton" type="button" aria-label="Close Sidebar Button" aria-controls="main-aside" aria-expanded="false">
+
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         
     </button>
 
@@ -12,10 +14,11 @@
 
     <li class="sidebarMenu">
         
-        <a class="sidebarList" href="home.html" aria-label="Home Page">
+        <a class="sidebarList" href="home.html" data-link="home">
 
-            <i class="fa-solid fa-house"></i>
-            Home
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            <span>Home</span>
+            
 
         </a>
     
@@ -23,10 +26,11 @@
 
     <li class="sidebarMenu">
         
-        <a class="sidebarList" href="index.html" aria-label="Dashboard">
+        <a class="sidebarList" href="index.html" aria-label="Dashboard" data-link="main-page">
 
-            <i class="fa-solid fa-table-columns"></i>
-            Dashboard
+            <i class="fa-solid fa-table-columns" aria-hidden="true"></i>
+            <span>Dashboard</span>
+            
 
         </a>
 
@@ -34,10 +38,11 @@
 
     <li class="sidebarMenu">
 
-        <a class="sidebarList" href="transaction-history.html" aria-label="Transaction History">
+        <a class="sidebarList" href="transaction-history.html" aria-label="Transaction History" data-link="transaction-history">
 
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            Transactions History
+            <i class="fa-solid fa-clock-rotate-left"  aria-hidden="true"></i>
+            <span>Transactions History</span>
+        
 
         </a>
 
@@ -45,20 +50,27 @@
 
     <li class="sidebarInvesting">
 
-        <i class="fa-solid fa-coins"></i>
-        <span class="sidebarList">Investing</span>    
-        <i class="fa-solid fa-caret-down"></i>
+        <button class="sidebar-accordion accordion-button" aria-expanded="false" aria-controls="investing-tab" aria-label="button to display investing pages">
+
+            <i class="fa-solid fa-coins"  aria-hidden="true"></i>
+            <span class="sidebarList" aria-hidden="true">Investing</span>    
+            <i class="fa-solid fa-caret-down"  aria-hidden="true"></i>
+
+        </button>
+
+
 
     </li>
 
-    <li class="investingTab">
+    <li class="investingTab" id="investing-tab" data-toggle-class="open">
 
         <div class="sidebarMenu">
             
-            <a href="wallet.html" class="sidebarList">
+            <a href="wallet.html" class="sidebarList" data-link="investing">
 
-                <i class="fa-solid fa-wallet" aria-label="Wallet"></i>
-                Wallet
+                <i class="fa-solid fa-wallet"  aria-hidden="true"></i>
+                <span>Wallet</span>
+                
 
             </a>
         
@@ -66,10 +78,10 @@
         
         <div class="sidebarMenu">
             
-            <a href="crypto.html" class="sidebarList">
+            <a href="crypto.html" class="sidebarList" aria-label="Buy or Sell Cryptocurrency" data-link="crypto">
 
-                <i class="fa-solid fa-money-bill-wave" aria-label="Buy or Sell Cryptocurrency"></i>
-                Buy/Sell
+                <i class="fa-solid fa-money-bill-wave"></i>
+                <span>Buy/Sell</span>
 
             </a>
         
@@ -79,21 +91,11 @@
 
     <li class="sidebarMenu">
         
-        <a class="sidebarList" href="forum.html">
+        <a class="sidebarList" href="forum.html" data-link="forum">
 
-            <i class="fa-solid fa-people-group" aria-label="Forum"></i>
-            Forum
-
-        </a>
-    
-    </li>
-
-    <li class="sidebarMenu">
-        
-        <a class="sidebarList" href="about.html">
-
-            <i class="fa-solid fa-book-open" aria-label="About Us"></i>
-            About
+            <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+            <span>Forum</span>
+            
 
         </a>
     
@@ -101,10 +103,23 @@
 
     <li class="sidebarMenu">
         
-        <a class="sidebarList" href="contact.html">
+        <a class="sidebarList" href="about.html" data-link="about">
 
-            <i class="fa-solid fa-headset" aria-label="Contact Us"></i>
-            Contact us
+            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+            <span>About</span>
+            
+
+        </a>
+    
+    </li>
+
+    <li class="sidebarMenu">
+        
+        <a class="sidebarList" href="contact.html" data-link="contact">
+
+            <i class="fa-solid fa-headset" aria-hidden="true"></i>
+            <span>Contact us</span>
+            
 
         </a>
     
@@ -118,7 +133,7 @@
 
         <a href="https://x.com/" aria-label="Twitter">
 
-            <i class="fa-brands fa-x-twitter icon-size twi-icon"></i>
+            <i class="fa-brands fa-x-twitter icon-size twi-icon" aria-hidden="true"></i>
         
         </a>
     
@@ -128,7 +143,7 @@
 
         <a href="https://www.instagram.com/" aria-label="Instagram">
 
-            <i class="fa-brands fa-instagram icon-size inst-icon"></i>
+            <i class="fa-brands fa-instagram icon-size inst-icon" aria-hidden="true"></i>
 
         </a>
     
@@ -138,7 +153,7 @@
 
         <a href="https://www.facebook.com/" aria-label="Facebook">
 
-            <i class="fa-brands fa-facebook icon-size fac-icon"></i>
+            <i class="fa-brands fa-facebook icon-size fac-icon" aria-hidden="true"></i>
 
         </a>
     
@@ -148,10 +163,15 @@
 
         <a href="https://web.telegram.org/" aria-label="Telegram">
 
-            <i class="fa-brands fa-telegram icon-size tel-icon"></i>
+            <i class="fa-brands fa-telegram icon-size tel-icon" aria-hidden="true"></i>
 
         </a>
     
     </li>
 
 </ul>
+
+
+
+</nav>
+

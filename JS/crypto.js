@@ -1,4 +1,5 @@
-import {fetchData, formatNumber} from './Components/fetchData.js';
+import {fetchData } from './Components/fetchData.js';
+import { formatNumber, formatISODate } from './functionality.js';
 
 let cryptoData = [];
 let existingChart = null;
@@ -34,6 +35,9 @@ function cryptoMenu(){
     newCryptoCard.id = coin.id;
     newCryptoCard.setAttribute("data-name", coin.name);
 
+    newCryptoCard.setAttribute("role", "option");
+    newCryptoCard.setAttribute("aria-selected", "false");
+
   const cryptoImage = document.createElement("img");
 
     cryptoImage.src = coin.image;
@@ -66,8 +70,19 @@ function cryptoMenu(){
 
 function createCard(cryptoObject){
 
-  const propertiesToDisplay = ["current_price", "price_change_24h", "ath", "market_cap",
-  "market_cap_rank", "circulating_supply", "high_24h", "low_24h", "last_updated"];
+   const propertyLabels = {
+    current_price: "Current Price",
+    price_change_24h: "Price Change (24h)",
+    ath: "All-Time High",
+    market_cap: "Market Cap",
+    market_cap_rank: "Market Cap Rank",
+    circulating_supply: "Circulating Supply",
+    high_24h: "24h High",
+    low_24h: "24h Low",
+    last_updated: "Last Updated"
+  };
+
+  const propertiesToDisplay = Object.keys(propertyLabels);
 
   const cryptoInfoContainer = document.querySelector(".info-cards");
 
@@ -82,11 +97,17 @@ function createCard(cryptoObject){
 
       const cardh3 = document.createElement("h3");
 
-      cardh3.textContent =  `${property.toUpperCase()}`;
+      cardh3.textContent =  `${propertyLabels[property]}`;
 
       const cardP = document.createElement("p");
 
-      cardP.textContent = cryptoObject[property];
+       if(property === "last_updated") {
+        cardP.textContent = formatISODate(cryptoObject[property]);
+      } else {
+        cardP.textContent = ["current_price", "price_change_24h", "ath", "market_cap", "high_24h", "low_24h"].includes(property)
+          ? `$ ${formatNumber(cryptoObject[property])}`
+          : cryptoObject[property];
+      }
 
       cardContainer.appendChild(cardh3);
       cardContainer.appendChild(cardP);
@@ -104,6 +125,8 @@ searchInput.addEventListener("click", showCryptoMenu);
 
 function showCryptoMenu(){
   dropdown.style.display = "block";
+  searchInput.setAttribute("aria-expanded", "true");
+
 }
 
 function filterCryptos(){
@@ -114,6 +137,7 @@ function filterCryptos(){
     dropdown.style.display = "flex";
   } else{
     dropdown.style.display = "none";
+    searchInput.setAttribute("aria-expanded", "false");
   }
 
   document.querySelectorAll(".crypto-card").forEach(card => {
@@ -123,19 +147,13 @@ function filterCryptos(){
 
     if(cardID.includes(inputValue) || cardName.includes(inputValue)){
       card.style.display = "flex";
+      searchInput.setAttribute("aria-expanded", "true");
     }else{
       card.style.display = "none";
     }
 
   })
 };
-
-document.addEventListener("click", function(event){
-
-  if (!searchInput.contains(event.target) && (dropdown.contains(event.target) || !dropdown.contains(event.target))) {
-    dropdown.style.display = "none";
-  }}
-); 
 
 document.querySelector(".cryptos-list").addEventListener("click", (event) => {
 
@@ -151,6 +169,9 @@ document.querySelector(".cryptos-list").addEventListener("click", (event) => {
   dynamicTitle(cardId, cryptoItem.image);
 
   displayGraph(cardId);
+
+  dropdown.style.display = "none";
+  searchInput.setAttribute("aria-expanded", "false");
 
 });
 

@@ -2,38 +2,41 @@
 
 main{
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
 }
 
 .crypto-container{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    background-color: var(--general-bg-color);
+    width: 65%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
 }
 
 .crypto-searchBar{
-    width: 100%;
-    background-color: var(--titles-color)
-}
 
-.crypto-menu{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
     position: relative;
+    width: 100%;
+    background-color: var(--titles-color);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
 }
 
 .search-wrapper{
     display: flex;
     position: relative;
     align-items: center;
-    width: 70%;
+    width: 60%;
 }
 
 .search-icon{
-    margin-left: 5px;
+    margin-left: 10px;
     position: absolute;
     z-index: 3;
     color: black;
@@ -41,7 +44,7 @@ main{
 }
 
 #crypto-searcher{
-    padding-left: 25px;
+    padding-left: 35px;
     border-radius: 20px;
     width: 100%;
     max-width: 100%;
@@ -57,7 +60,7 @@ main{
     width: 100%; 
     overflow-y: auto;
     background: var(--row-color);
-    border: 1px solid #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     z-index: 30;
     display: none;
     flex-direction: column;
@@ -70,10 +73,16 @@ main{
 .crypto-card{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row;
     padding: 10px;
     cursor: pointer;
     border-bottom: 1px solid #eee;
+    background-color: var(--row-color);
+}
+
+.crypto-card:nth-of-type(2n){
+    background-color: var(--alternated-row-color);
 }
 
 .crypto-text{
@@ -91,16 +100,6 @@ main{
     background-color: var(--dashboard-hover);
 }
 
-.chosen-crypto{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    background-color: var(--titles-color);
-    padding: 10px;
-}
-
 .chosen-crypto img{
     width: 30px;
 }
@@ -109,21 +108,23 @@ main{
 
 /* #region   ------------------------------------------             CRYPTO GRAPH         ---------------------------------------------------             */
 
-.crypto-graphData{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
 .crypto-graphContainer{
-    padding: 20px;
-    min-height: 500px;
+    display: flex;
+    aspect-ratio: 16 / 9;
+    padding: 5px;
+    flex: 1;
+    background-color: hsl(0, 0%, 25%);
+   
 }
 
 .crypto-graph{
     background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    width: 100%;
+    
 }
+
+
 
 .purchase-buttonContainer{
     display: flex;
@@ -141,8 +142,26 @@ main{
     background: none;
     cursor: pointer;
     border-radius: 20px;
-    padding: 7px;
+    padding: 5px 15px;
 }
+
+.buy-button-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--titles-color);
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.chosen-crypto{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 
 .purchase-button:hover{
     background-color: var(--row-color);
@@ -156,14 +175,17 @@ main{
 .infoCards-container{
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-
+    width: 35%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .info-cards{
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
+
 }
 
 .info-card{
@@ -174,53 +196,111 @@ main{
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     background-color: var(--row-color);
     word-break: break-word;
-    flex-grow: 1;
+    flex: 1;
 }
 
 .info-card p{
     text-align: end;
 }
 
-.info-card:first-child{
-    border-top: 1px solid rgba(255, 255, 255, 0.3);;
+.info-card:last-child{
+    border-bottom: none;
 }
 
 .info-card:nth-of-type(2n){
-    background-color: var(--general-bg-color);
+    background-color: var(--alternated-row-color);
+}
+
+.details-header{
+    display: flex;
+    background-color: var(--titles-color);
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 /* #endregion */
 
-@media (min-width: 900px){
+@media (max-width: 1200px){
+
+    .crypto-container{
+        width: 55%;
+
+    }
+
+    .infoCards-container{
+        width: 45%;
+
+    }
     
-    main{
-        flex-direction: column;
-        width: 80%;
-        
-    }
-
-    .crypto-graphContainer{
-        padding: 20px;
-        height: 50%;
-    }
-
- 
 }
 
-@media (max-width: 500px){
-
-    .info-card h3,
-    .info-card p{
-        font-size: 15px; 
+@media (max-width: 950px){
+    main{
+        flex-direction: column;
     }
+
+    .crypto-container{
+        width: 100%;
+    }
+
+    .infoCards-container{
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px){
 
     .crypto-graphContainer{
         display: none;
     }
-
+  
 }
 
+@media (max-width: 420px){
 
+    main{
+        padding: 10px;
+        gap: 10px;
+    }
 
+    .buy-button-wrapper{
 
+        padding: 10px;
+        gap: 10px;
+    }
 
+    .info-card{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 10px;
+    }
+
+    .info-card p{
+        color: hsl(0, 0%, 84%);
+    }
+
+    .details-header{
+        padding: 10px;
+    }
+
+    .search-wrapper{
+        width: 90%;
+    }
+}
+
+@media (max-width: 360px){
+
+    .purchase-button{
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background-color: hsl(0, 0%, 19%);
+        padding: 5px 15px;
+    }
+
+    .buy-button-wrapper{
+        flex-direction: column;
+        background-color: var(--row-color);
+    }
+}

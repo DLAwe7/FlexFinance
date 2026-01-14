@@ -5,197 +5,335 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
     <link rel="icon" href="Assets/logo-removebg-preview.ico">
-    <link rel="stylesheet" href="CSS/template.css">
+    <link rel="stylesheet" href="CSS/shared.css">
     <link rel="stylesheet" href="CSS/account.css">
     <script src="https://kit.fontawesome.com/c7de107e5c.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="JS/load-components.js" defer></script>
-    <script src="JS/account.js" defer></script> 
+    <script type="module" src="JS/account.js" defer></script> 
 </head>
 
 <body data-page="account">
 
-    <header id="header" role="banner"></header>
-    <aside id="aside" class="sidebar" role="complementary" aria-labelledby="aside-title"></aside>
+    <header id="header"></header>
+    <aside id="main-aside" class="sidebar toggleable" data-toggle-class="translatePX" data-use-inert inert></aside>
 
     <main>
 
-        <section class="container" role="region">
 
-            <h1 class="menuTitle">Basic Information</h1>
+        <section class="container personal-info">
 
-            <div class="image-card">
+            <h2 class="menuTitle">Personal Information</h2>
+            
+            <ul class="personal-info-card">
 
-                <div class="image-container">
-                    <span>Change your picture</span>
+            
 
-                    <label for="upload-img">
-                        <img src="Assets/defaultUserImage.webp" alt="User profile picture" id="change-picture">
-                    </label>
+                <li class="image-card">
 
-                    <input type="file" id="upload-img">
+                    <div class="image-container">
+                        
 
-                </div>
+                        <label for="upload-img" class="image-label">
+                            <img src="Assets/user-review2.webp" alt="User profile picture" id="change-picture">
+                        </label>
 
-                <button class="modifyBtn" aria-label="Modify Picture">Modify</button>
+                        <input type="file" id="upload-img">
 
-            </div> 
+                    </div>
 
-            <div class="card info-box">
+                    <div class="card">
 
-                <div class="divisor">
+                        <span>Change your picture</span>
+                        <button class="modifyBtn" aria-label="Modify Picture"  type="button" aria-label="button to change your picture"  aria-controls="edit-container"
+                    aria-expanded="false" id="change-picture-button"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
 
-                    <h2>Name</h2>
-                    <span class="username"></span>
+                    </div>
 
-                </div>
 
-                <button class="modifyBtn operative" aria-label="Modify Name" data-field="username" data-label="Enter your name" data-type="text">Modify</button>
+                </li> 
 
-            </div> 
+                <li class="card info-box">
 
-            <div class="card info-box">
 
-                <div class="divisor">
+                    <div class="divisor">
 
-                    <h2>Birth date</h2>
-                    <span class="birthday"></span>
+                        <span class="settings-category">Name</span>
+                        <span class="category-info username"></span>
 
-                </div>
 
-                <button class="modifyBtn operative" aria-label="Modify Birthday" data-field="birthday" data-label="Enter your birthdate" data-type="date">Modify</button>
+                    </div>
+                    
+        
+                    <button class="modifyBtn operative" aria-label="Modify Name" data-field="username"
+                    data-label="Enter your name" data-type="text"  aria-controls="edit-form"
+                    aria-expanded="false" type="button"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
 
-            </div> 
+                </li>
 
-            <div class="card info-box">
+                <li class="card info-box">
 
-                <div class="divisor">
+                    
+                    <div class="divisor">
 
-                    <h2>Email</h2>
-                    <span class="email"></span>
+                        <span class="settings-category">Birth date</span>
+                        <span class="category-info birthday"></span>
 
-                </div>
+                    </div>
 
-                <button class="modifyBtn operative" aria-label="Modify Email" data-field="email" data-label="Enter your email" data-type="email">Modify</button>
+                    <button class="modifyBtn operative"  type="button" aria-controls="edit-form" aria-expanded="false" aria-label="Modify Birthday" data-field="birthday" data-label="Enter your birthdate" data-type="date"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
 
-            </div> 
+                </li>
 
-            <div class="card info-box">
+                <li class="card info-box">
 
-                <div class="divisor">
-
-                    <h2>Phone Number</h2>
-                    <span class="telephone"></span>
-
-                </div>
-
-                <button class="modifyBtn operative" aria-label="Modify Phone Number" data-field="telephone" data-label="Enter your phone number" data-type="tel">Modify</button>
-
-            </div> 
-
-            <div class="card">
-
-                <div class="divisor">
-
-                    <h2>Password</h2>
-                    <span>************</span>
-
-                </div>
-
-                <button class="modifyBtn" aria-label="Modify Password">Modify</button>
-
-            </div> 
-
-        </section>
-
-        <section class="container" role="region">
-
-            <h1 class="menuTitle">Privacy & Data</h1>
-
-            <div class="card">
-
-                <div class="divisor">
-                    <h2>Profile Visibility</h2>
-                </div>
-
-                <button class="modifyBtn" aria-label="Modify Profile Visibility">Modify</button>
-
-            </div> 
+                    <div class="divisor">
     
-            <div class="card">
+                        <span class="settings-category">Email</span>
+                        <span class="category-info email"></span>
 
-                <div class="divisor">
-                    <h2>Delete My Account</h2>
-                </div>
+                    </div>
 
-                <button class="modifyBtn" aria-label="Delete my account">Delete</button>
+                
 
-            </div>
 
-            <div class="card">
+                
 
-                <div class="divisor">
-                    <h2>Download My Data</h2>
-                </div>
+                    <button class="modifyBtn operative"   type="button" aria-controls="edit-form" aria-expanded="false" aria-label="Modify Email" data-field="email" data-label="Enter your email" data-type="email"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
 
-                <button class="modifyBtn" aria-label="Download my data">Download</button>
+                </li>
 
-            </div> 
+                <li class="card info-box">
 
-        </section>
+                    <div class="divisor">
 
-        <section class="container" role="region">
+                        <span class="settings-category">Phone Number</span>
+                        <span class="category-info telephone"></span>
 
-            <h1 class="menuTitle">Payment & Billing</h1>
+                    </div>
 
-            <div class="card">
+                    <button class="modifyBtn operative"  type="button" aria-controls="edit-form" aria-expanded="false" aria-label="Modify Phone Number" data-field="telephone" data-label="Enter your phone number" data-type="tel"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
 
-                <div class="divisor">
-                    <h2>Saved Payment Methods</h2>
-                </div>
+                </li>
 
-                <button class="modifyBtn" aria-label="Modify Saved Methods">Modify</button>
+                <li class="card info-box">
 
-            </div> 
+                    <div class="divisor">
+                        
+                        <span class="settings-category">Password</span>
+                        <span class="category-info">Change your password</span>
 
-            <div class="card">
+                    </div>
 
-                <div class="divisor">
-                    <h2>Billing Address</h2>
-                </div>
+                    <button class="modifyBtn operative" type="button" aria-controls="edit-form" aria-expanded="false" aria-label="Modify Password" data-field="password" data-label="Enter your password" data-type="password"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
 
-                <button class="modifyBtn" aria-label="Modify Billing Address">Modify</button>
+                </li>
 
-            </div> 
 
-            <div class="card">
 
-                <div class="divisor">
-                    <h2>Subscription Status</h2>
-                    <span>Premium</span>
-                </div>
 
-            </div> 
+            </ul>
 
         </section>
 
+        <section class="other-settings-container">
+
+            <section class="container">
+
+                <h2 class="menuTitle">Payment & Billing</h2>
+
+
+                <ul>
+
+                    <li class="card">
+
+                        <div class="divisor">
+                            <span>Saved Payment Methods</span>
+                        </div>
+
+                        <button class="modifyBtn"  type="button" aria-label="Modify Saved Methods" data-type="text"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                    </li>
+
+                    <li class="card">
+
+                        <div class="divisor">
+                            <span>Billing Address</span>
+                        </div>
+
+                        <button class="modifyBtn"  type="button" aria-label="Modify Billing Address" aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                    </li>
+
+                    <li class="card">
+
+                        <div class="divisor">
+                            <span class="settings-category">Subscription Status</span>
+                            <span class="category-info">Basic</span>
+                        </div>
+
+                        <button class="modifyBtn"  type="button" aria-label="Modify Suscription Status"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+             
+                    </li>
+
+                </ul>
+      
+            </section>
+
+            
+           <section class="container">
+
+                <h2 class="menuTitle">Preferences</h2>
+
+                <ul>
+
+                    <li class="card">
+
+                        <div class="divisor">
+
+                            <span class="settings-category">Language</span>
+                            <span class="category-info">English (US)</span>
+
+                        </div>
+                    
+
+                        <button class="modifyBtn"  type="button" aria-label="Modify Language"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                    </li>
+
+                    <li class="card">
+
+                        <div class="divisor">
+
+                            <span class="settings-category">Timezone</span>
+                            <span class="category-info">GMT+2</span>
+
+                        </div>
+                    
+
+                        <button  type="button" class="modifyBtn" aria-label="Modify Timezone"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                    </li>
+
+                    <li class="card">
+
+                        <div class="divisor">
+
+                            <span class="settings-category">Notifications</span>
+                            <span class="category-info">Email & Push</span>
+
+
+                        </div>
+                
+                        <button class="modifyBtn"  type="button" aria-label="Modify Notifications"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                    </li>
+
+                    <li class="card">
+
+                        <div class="divisor">
+                                <span class="settings-category">Theme</span>
+                                <span class="category-info">Dark Mode</span>
+                        </div>
+                
+
+                        <button class="modifyBtn"  type="button" aria-label="Modify Page's Theme"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                    </li>
+
+                    <li class="card">
+
+                        <div class="divisor">
+                            <span class="settings-category">Accessibility</span>
+                            <span class="category-info">High Contrast</span>
+                        </div>
+                    
+
+                        <button class="modifyBtn"  type="button" aria-label="Modify accesibility"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                    </li>
+
+                          <li class="card">
+
+                    <div class="divisor">
+                        <span class="settings-category">Profile Visibility</span>
+                        <span class="category-info">Public</span>
+                    </div>
+
+                    <button class="modifyBtn"  type="button" aria-label="Modify Profile Visibility"  aria-controls="edit-container"
+                    aria-expanded="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i></button>
+
+                </li>
+
+                </ul>
+
+                </section>
+
+                <section class="container">
+                    <h2 class="menuTitle">Other Account Settings</h2>
+
+                    
+                    <ul>
+                
+                <li class="card">
+
+                    <div class="divisor">
+                        <span>Delete My Account</span>
+                    </div>
+
+                    <button class="modifyBtn alter-delete"  type="button" aria-label="Delete my account"  aria-controls="edit-container"
+                    aria-expanded="false"><span>Delete</span><i class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+
+                </li>
+
+                <li class="card">
+
+                    <div class="divisor">
+                        <span>Download My Data</span>
+                    </div>
+
+                    <button class="modifyBtn alter-download"  type="button" aria-label="Download my data"  aria-controls="edit-container"
+                    aria-expanded="false"><span>Download</span><i class="fa-solid fa-download" aria-hidden="true"></i></button>
+
+                </li>
+
+            </ul>
+
+
+
+                </section>
+
+
+
+
+        </section>
 
     </main>
 
-    <div id="language-container"></div>
-    <div id="country-container"></div>
+    <form class="edit-cardData toggleable" id="edit-form" data-toggle-class="open" data-button-active="">
 
-    <form class="edit-cardData" aria-labelledby="editFormTitle">
-
-        <button type="button" class="button-type" aria-label="Close form"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="button-type" aria-label="Close form" aria-controls="edit-form" aria-expanded="false"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         
-        <div class="input-container" aria-live="polite">
+        <div class="input-container">
 
         </div>
 
         <button type="submit" class="submit-type" aria-label="Submit form">Submit</button>
         
     </form>
+
+    <div class="non-operative-container toggleable" id="edit-container" data-toggle-class="open">
+        <button type="button" class="button-type" aria-label="Close form" aria-controls="edit-container" aria-expanded="false"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <span class="informative-message"></span>
+    </div>
 
 
     <footer id="footer"></footer>

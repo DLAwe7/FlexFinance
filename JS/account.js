@@ -1,38 +1,75 @@
+import { toggleMenu } from "./functionality.js";
+
+let userObject = {
+    username: null,
+    birthday: null,
+    email: null,
+    phoneNumber: null
+};
+
+let storedButton;
+let storedField;
+
+const inputCard = document.querySelector(".edit-cardData");
+
 document.addEventListener("DOMContentLoaded", function(){
 
-    displayUserInfo();
+
+    displayUserInfo(userObject);
     loadEventListeners();
 
+
+    inputCard.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+        
+        const newValue = document.querySelector(`input[name="${storedField}"]`).value;
+        
+        userObject[storedField] = newValue;
+
+        displayUserInfo(userObject);
+        toggleMenu(storedButton);
+
+
+    });
+
 })
+
 
 function loadEventListeners(){
 
     const inputContainer = document.querySelector(".input-container");
+    const informativeMessage = document.querySelector(".informative-message");
 
-    document.querySelectorAll(".operative").forEach(button => {
-        button.addEventListener("click", function(event){
+    const modifyButtons = document.querySelectorAll(".modifyBtn");
+     
+    modifyButtons.forEach(button => {button.addEventListener("click", function(event){
 
-            const clickedButton = event.currentTarget;
-            const container = clickedButton.closest(".info-box");
+        event.stopPropagation();
+        const clickedButton = event.currentTarget;
+        inputContainer.innerHTML = ``;    
 
-            if(inputContainer.innerHTML.trim() !== ""){
-                inputContainer.innerHTML = "";
-            }
+        if(button.classList.contains("operative")){
 
-            const field = clickedButton.dataset.field;
+              
+            storedButton = clickedButton;
             const labelText = clickedButton.dataset.label;
             const inputType = clickedButton.dataset.type;
+            const field = clickedButton.dataset.field;
+            storedField = field;
+            const currentValue = document.querySelector(`.${field}`)?.textContent || "";
 
-            const currentValue = container.querySelector(`.${field}`)?.textContent || "";
-            
+
             const inputLabel = document.createElement("label");
+
 
                 inputLabel.htmlFor = "inputModify";
                 inputLabel.textContent = labelText;
 
+
             const inputElement = document.createElement("input");
 
-                inputElement.id = "inputModify";
+                inputElement.className = "inputModify";
                 inputElement.type = inputType;
                 inputElement.value = currentValue;
                 inputElement.name = field;
@@ -41,36 +78,19 @@ function loadEventListeners(){
             inputContainer.append(inputLabel);
             inputContainer.append(inputElement);
 
-            document.querySelector(".edit-cardData").addEventListener("submit", function(event){
+        }
+        else{
+            
+            informativeMessage.textContent = button.id === `change-picture-button` ? "This button changes your profile picture. File uploads are not functional yet, try another button!" : `This is a mocking button. Try using one from Personal Information that is not "change your picture"!`;
+        }
 
-                const storedUser = JSON.parse(localStorage.getItem("userData"));
+        toggleMenu(clickedButton);
 
-                event.preventDefault();
-        
-                const formData = new FormData(this);
-        
-                const inputtedData = formData.get(`${field}`);
-
-                storedUser[field] = inputtedData;
-
-                localStorage.setItem("userData", JSON.stringify(storedUser));
-
-                displayUserInfo();
-                closeMenu();
-        
-            })
-
-            openMenu();
-
-        })
+    });
 
 })};
 
-
-
-function displayUserInfo(){
-
-    const userData = JSON.parse(localStorage.getItem("userData")) || {};
+function displayUserInfo(userInfo){
 
     const nameDisplayer = document.querySelector(".username");
     const birthDayDisplayer = document.querySelector(".birthday");
@@ -78,27 +98,11 @@ function displayUserInfo(){
     const phoneDisplayer = document.querySelector(".telephone")
 
  
-    nameDisplayer.textContent = userData.username;
-    birthDayDisplayer.textContent = userData.birthday || "Birth date not provided";
-    emailDisplayer.textContent = userData.email;
-    phoneDisplayer.textContent = userData.telephone || "Phone number not provided";
+    nameDisplayer.textContent = userInfo.username || "Emily Watson";
+    birthDayDisplayer.textContent = userInfo.birthday || "1/1/1970";
+    emailDisplayer.textContent = userInfo.email || "emilywatson@example.com";
+    phoneDisplayer.textContent = userInfo.phoneNumber || "+34 123456789";
 
-}
+};
 
-const menuAccount = document.querySelector(".edit-cardData");
-
-function openMenu(){
-    
-    menuAccount.style.display = "flex";
-
-    document.querySelector(".button-type").addEventListener("click", closeMenu);
-    
-}
-
-
-function closeMenu(){
-
-    menuAccount.style.display = "none"; 
-
-}
 

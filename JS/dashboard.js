@@ -1,7 +1,7 @@
-import {fetchData, formatNumber} from './Components/fetchData.js';
+import {fetchData} from './Components/fetchData.js';
+import { formatNumber } from './functionality.js';
 
 document.addEventListener("DOMContentLoaded", function(){
-
 
   (async function (){
     const userData = await fetchData("./JSON/user-data.json");
@@ -10,11 +10,16 @@ document.addEventListener("DOMContentLoaded", function(){
     createTransactionCard(userHistory);
     displayData(userData);
     graphData(userHistory);
-    progressBarWidth(userData)
+    progressBarWidth(userData);
 
   })();
 
 });
+
+function formatDateEU(isoDate) {
+  const [year, month, day] = isoDate.split("-");
+  return `${day}/${month}/${year}`;
+}
 
 function graphData(history){
 
@@ -30,7 +35,7 @@ function graphData(history){
     "May": "05",
     "June": "06",
     "July": "07",
-    "august": "08",
+    "August": "08",
     "September": "09",
     "October": "10",
     "November": "11",
@@ -39,25 +44,22 @@ function graphData(history){
 
   history.forEach(item => {
 
-    const monthNumber = item.date.split("/")[1];
+    const [year, monthNum, day] = item.date.split("-");
 
-    const monthName = Object.keys(months).find(key => months[key] === monthNumber);
+    const monthName = Object.keys(months).find(key => months[key] === monthNum);
 
     doughnutDataMap.push({"reason": item.reason, "value": item.amount});
-
     itemHolder.push({"month": monthName, "count": item.amount});
 
-  })
+  });
 
   itemHolder.forEach(item => {
-
     const month = item.month;
-
     if(!barDataMap[month]){
-    barDataMap[month] = 0;
+      barDataMap[month] = 0;
     }
     barDataMap[month] += item.count;
-  })
+  });
 
   const barData = Object.entries(barDataMap).map(([month, count]) => ({
     month,
@@ -72,20 +74,17 @@ function graphData(history){
 
   const doughnutData = getTopFiveExpenses(doughnutDataMap);
 
-
   displayGraphs(doughnutData, barData);
-
 }
 
 function displayGraphs(doughnutData, barData) {
-
 
   let themeColor;
   if(localStorage.getItem("theme") === "light"){
     themeColor = "black";
   } else{
-    themeColor = "white"
-  };
+    themeColor = "white";
+  }
 
   const doughnutCtx = document.getElementById("myChart");
   if (doughnutCtx) {
@@ -109,14 +108,13 @@ function displayGraphs(doughnutData, barData) {
       },
       options: {
         plugins: {
-            legend: {
-                labels: {
-                    color: `${themeColor}`
-                },
-              
+          legend: {
+            labels: {
+              color: themeColor
             }
+          }
         }
-    },
+      },
     });
   } else {
     console.error("Doughnut Chart canvas element not found!");
@@ -132,7 +130,7 @@ function displayGraphs(doughnutData, barData) {
           {
             label: "Monthly Expenses",
             data: barData.map((row) => row.count),
-            backgroundColor: "rgba(54, 162, 235, 0.5)",
+            backgroundColor: "rgba(149, 229, 255, 0.64)",
             borderColor: "rgba(54, 162, 235, 1)",
             borderWidth: 1,
           },
@@ -141,9 +139,9 @@ function displayGraphs(doughnutData, barData) {
       options: {
         plugins: {
           legend: {
-              labels: {
-                  color: `${themeColor}`
-              }
+            labels: {
+              color: themeColor
+            }
           }
         },
         responsive: true,
@@ -151,17 +149,17 @@ function displayGraphs(doughnutData, barData) {
         scales: {
           y: {
             ticks: {
-              color: `${themeColor}`,
+              color: themeColor,
             },
             beginAtZero: true
           },
           x:{
             ticks: {
-              color:`${themeColor}`,
+              color: themeColor,
             }
           },
         },
-        },
+      },
     });
   } else {
     console.error("Bar Chart canvas element not found!");
@@ -169,61 +167,38 @@ function displayGraphs(doughnutData, barData) {
 }
 
 function progressBarWidth(userData){
-
   const progressBar = document.querySelector(".progress-accomplished");
-
-  const totalWidth = (userData.Progress * 100 / userData.Goal);
-    
-    progressBar.style.width = `${totalWidth}%`;
-
-
+  const totalWidth = (userData.progress * 100 / userData.goal);
+  progressBar.style.width = `${totalWidth}%`;
 }
 
 function createTransactionCard(userHistory){
 
-  const transactionsTable = document.querySelector(".transactions-history")
+  const transactionsTable = document.querySelector(".transactions-history");
 
   for(let i = userHistory.length - 1; i >= userHistory.length - 4; i -= 1){
 
-    let sign;
-
-        if(userHistory[i].expense === true){
-            sign = "-"
-        }else{
-            sign = "+"
-        }
+    let sign = userHistory[i].expense ? "-" : "+";
 
     const tableRow = document.createElement("tr");
+    tableRow.classList.add("table-row");
 
-            tableRow.classList.add("table-row");
+    const tableD1 = document.createElement("td");
+    tableD1.classList.add("row");
+    tableD1.textContent = formatDateEU(userHistory[i].date);
 
-        const tableD1 = document.createElement("td");
+    const tableD2 = document.createElement("td");
+    tableD2.classList.add("row");
+    tableD2.textContent = userHistory[i].reason;
 
-            tableD1.classList.add("row");
+    const tableD3 = document.createElement("td");
+    tableD3.classList.add("row");
+    tableD3.textContent = `${sign} ${userHistory[i].amount}${userHistory[i].currency}`;
 
-            tableD1.textContent = `${userHistory[i].date}`;
-
-        const tableD2 = document.createElement("td");
-
-            tableD2.classList.add("row");
-            tableD2.textContent = `${userHistory[i].reason}`;
-
-        const tableD3 = document.createElement("td");
-
-            tableD3.classList.add("row");
-            tableD3.textContent = `${sign} ${userHistory[i].amount}${userHistory[i].currency}`;
-
-
-
-        tableRow.append(tableD1)
-        tableRow.append(tableD2)    
-        tableRow.append(tableD3)
-        transactionsTable.append(tableRow)
-
+    tableRow.append(tableD1, tableD2, tableD3);
+    transactionsTable.append(tableRow);
   }
-
 }
-
 
 function displayData(userData){
 
@@ -235,13 +210,10 @@ function displayData(userData){
   const goal = document.querySelector(".bar-containerGoal");
   const user = userData;
 
-  totalBalance.textContent = `${formatNumber(user.Balance)}${user.currency}`;
-  avrSavings.textContent = `${user.AverageSav}%`;
-  lastDeposit.textContent =`${formatNumber(user.LastDep)}${user.currency}`;
-  totalSavings.textContent = `${formatNumber(user.TotalSav)}${user.currency}`
-  progress.textContent = `Progress: ${formatNumber(user.Progress)}${user.currency}`;
-  goal.textContent = `Goal: ${formatNumber(user.Goal)}${user.currency}`;
-
-
+  totalBalance.textContent = `${formatNumber(user.crypto.balance)}${user.currency}`;
+  avrSavings.textContent = `${user.averageSavings}%`;
+  lastDeposit.textContent =`${formatNumber(user.lastDeposit)}${user.currency}`;
+  totalSavings.textContent = `${formatNumber(user.totalSavings)}${user.currency}`;
+  progress.textContent = `Progress: ${formatNumber(user.progress)} ${user.currency}`;
+  goal.textContent = `Goal: ${formatNumber(user.goal)}${user.currency}`;
 }
-

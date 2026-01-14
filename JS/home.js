@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(){
 
+    document.querySelector('.extender-wrapper').addEventListener('click', () => {
+    document.querySelector('.home-section').scrollIntoView({ behavior: 'smooth', block: "start"});
+    });
+
     
 
     let cardIndex = 0;
@@ -55,6 +59,37 @@ document.addEventListener("DOMContentLoaded", function(){
         
     
     };
+
+    const cardParagraph = document.querySelectorAll(".card-paragraph");
+
+    cardParagraph.forEach(card => {
+
+        const paragraph = card.querySelector(".paragraph");
+
+        card.addEventListener("mouseenter", () => {
+
+        clearInterval(intervalId);
+        paragraph.style.maxHeight = paragraph.scrollHeight + "px";
+
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+
+        showSlide(cardIndex);
+        paragraph.style.maxHeight = paragraph.scrollHeight + "px";
+        requestAnimationFrame(() => {
+        paragraph.style.maxHeight = '0';
+        })
+        }
+
+
+      
+
+    
+    
+    );});
 
 });
 

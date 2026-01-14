@@ -5,152 +5,225 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum</title>
     <link rel="icon" href="Assets/logo-removebg-preview.ico">
-    <link rel="stylesheet" href="CSS/template.css">
+    <link rel="stylesheet" href="CSS/shared.css">
     <link rel="stylesheet" href="CSS/forum.css">
     <script src="https://kit.fontawesome.com/c7de107e5c.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="JS/load-components.js" defer></script> 
     <script type="module" src="JS/forum.js" defer></script> 
 </head>
 
 <body data-page="forum">
     
-    <header id="header" role="banner"></header>
-    <aside id="aside" class="sidebar" role="complementary" aria-labelledby="aside-title"></aside>
+    <header id="header"></header>
+    <aside id="main-aside" class="sidebar toggleable" data-toggle-class="translatePX" data-focusable="true" inert data-use-inert></aside>
 
 
     <main>
 
-        <section class="forum-container">
+        <div class="navigation-block">
 
-            <section id="searchingBar">
+            <div class="desktop-hidden left">
+                <button type="button" aria-label="forum sidebar toggle button" aria-controls="aside-left" data-toggle="left" aria-expanded="false" class="forum-sidebar-toggle"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
+            </div>
+
+            <img src="/Assets/logo-removebg-preview.ico" alt="">
+
+            <div class="search-container">
+
+                <label for="searchBar" id="myLabel">
+                    <i class="fa-solid fa-magnifying-glass"  aria-hidden="true"></i>
+                    <span class="visually-hidden">Search posts</span>
+                </label>
+
+
+                <input type="search" id="searchBar" placeholder="Search..." title="Search posts" autocomplete="off">
+
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="./about.html">About</a>
+                       
+                    </li>
+                    <li>
+                        <a href="./forum.html"  aria-current="page">Forum</a>
+                        
+                    </li>
+                    <li>
+                        <a href="./contact.html">Contact</a>
+                        
+                    </li>
+                   
+                </ul>
+
+
+
+            </nav>
+
+        </div>
+
+        <div class="section-wrapper">
+
+         
+
+            <aside class="left-aside forum-sidebar toggleable" id="aside-left" data-toggle-class="translatePX">
+
+                <button type="button" class="forum-sidebar-toggle" data-toggle="left" aria-controls="aside-left" aria-expanded="false" aria-label="Close forum sidebar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
 
                 <div class="buttons-container">
 
-                    <button id="newPost" aria-label="Create new post">
+                    <button id="newPost"  type="button" aria-label="create new post">
                         
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-plus"  aria-hidden="true"></i>
                         <span>New post</span>
 
                     </button>
 
-                    <button class="news-toggle news-Btn1" aria-label="Toggle news section">
-
-                        <i class="fa-solid fa-plus"></i>
-                        <span>News</span>
-
-                    </button>
-
                 </div>
 
-                <div class="search-container">
+                <h3>Categories</h3>
 
-                    <input type="search" id="searchBar" placeholder="Search..." title="Search posts" aria-label="Search posts" autocomplete="off">
-
-                    <label for="searchBar" id="myLabel">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </label>
-
-                </div>
-
-                <button class="news-toggle news-Btn2" aria-label="Toggle news section">
-
-                    <i class="fa-solid fa-plus"></i>
-                    <span>News</span>
-
-                </button>
-            
-            </section>
-
-            <section class="posts-container">
-
-                <ul class="cards-listContainer">
-    
-                   
+                <ul class="categories-list">
+                 
                 </ul>
-              
-    
-                <div>
-    
-                    <button class="show-more" aria-label="Show more posts">
 
-                        <i class="fa-solid fa-plus"></i>
 
-                        <span>
-                            Show more 
-                        </span>
 
-                    </button>
-    
-                </div>
-    
+                <h3>My activity</h3>
+
+                <ul class="activity-list">
+
+                    <li><span>My posts</span></li>
+                    <li><span>Pinned posts</span></li>
+                    <li><span>Followed topics</span></li>
+                    <li><span>Recent activity</span></li>
+                    <li><span>Drafts</span></li>
+
+                </ul>
+
+            </aside>
+
+            <section class="forum-container">
+
+                <section class="posts-container">
+
+                    <div class="filters-container">
+
+                        <button type="button" class="filters-dropdown" aria-controls="wrapper-filters" aria-expanded="false">Filter by <span>:</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+
+                        <div class="filters-wrapper toggleable" id="wrapper-filters" data-toggle-class="active">
+
+                            <button type="button" data-sort="date">Date</button>
+                            <button type="button" data-sort="likes">Most liked</button>
+                            <button type="button" data-sort="dislikes">Most disliked</button>
+
+                        </div>
+                 
+                    </div>
+
+            
+                           
+                    <ul class="cards-listContainer">
+        
+                    
+                    </ul>
+
+
+                  
+                 
+        
+                </section>
+
             </section>
 
-        </section>
+            <aside class="right-aside forum-sidebar toggleable" id="aside-right" data-toggle-class="translatePX">
 
-        
+                 <h2>Trending Topics</h2>
 
-        
+                    <div class="user-week">
 
-        <aside class="second-aside" aria-labelledby="latest-news">
+                        <h3>🏆 User of the Week</h3>
 
-            <h1>Latest news</h1>
+                        <span>⭐ SarahB – 172 Rep.</span>
+                        <p>"Helped 12 users with savings questions"</p>
 
-            <button class="news-closingBtn" aria-label="Close news section">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+                    </div>
 
-            <article class="articleCard">
+                     <div>
 
-                <img src="Assets/image1.webp" class="articleImage" alt="Exploring the future of artificial intelligence">
+                        <h3>🎖️ Your Badges</h3>
 
-                <h2>Exploring the Future of Artificial Intelligence</h2>  
+                        <ul>
 
-                <span>
-                    Artificial Intelligence (AI) continues to evolve at a rapid pace,
-                    impacting industries from healthcare to entertainment. What does the future hold,
-                    and how can we prepare for the changes it will bring?
-                </span>
-                      
-            </article>
+                            <li>
+
+                                <span>💰 Savings Starter -</span>
+                                <span>First topic posted</span>
+
+                            </li>
+
+                            <li>
+                                  
+
+                                <span>🏦 Mortgage Mentor -</span>
+                                <span>5 accepted answers</span>
+
+                            </li>
+
+                            <li>
+
+                                <span>📈 Market Analyst -</span>
+                                <span>10 investment replies</span>
+
+                            </li>
+
+                            <li>
+
+                                <span>📝 Budget Planner -</span>
+                                <span>Upvote 10 posts</span>
+
+                            </li>
+
+
+
+
+
+                        </ul>
+
+
+                    </div>
+
+                    <div>
+
+                        <h3>📅 Upcoming Events</h3>
+
+                        <ul>
+
+                            <li><span><strong>Nov 4</strong> - Central Bank Rate Announcement</span></li>
+                            <li><span><strong>Nov 7</strong> - Free Webinar: "Smart Budgeting"</span></li>
+                            <li><span><strong>Nov 13</strong> - Tax Deductions Q&A</span></li>
+
+                        </ul>
+
+
+                    </div>
+
+                   
+
+            </aside>
+
+
+
+
+
+        </div>
+
     
-            <article class="articleCard">    
-
-                <img src="Assets/image2.webp" class="articleImage" alt="The impact of climate change on global agriculture">
-
-                <h2>The Impact of Climate Change on Global Agriculture</h2> 
-
-                <span>
-                    Climate change is affecting ecosystems and food production worldwide, and agriculture
-                    is one of the hardest-hit sectors. Rising temperatures, altered rainfall patterns,
-                    and extreme weather events threaten crop yields and food security
-                </span>
-
-            </article>
-    
-            <article class="articleCard">     
-
-                <img src="Assets/image3.webp" class="articleImage" alt="The rise of remote work post-pandemic">
-
-                <h2>The Rise of Remote Work: A Post-Pandemic World</h2> 
-
-                <span>
-                    The COVID-19 pandemic has drastically changed the way we work. With many businesses shifting
-                    to remote work, employees and employers have had to adapt to new ways of collaborating and
-                    managing teams. What does the future of remote work look like?
-                </span>
-
-            </article>
-    
-    
-        </aside>
-
     </main>
-
-    
-    
-    <div id="language-container"></div>
-    <div id="country-container"></div>
 
     <footer id="footer"></footer>
     

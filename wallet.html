@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet</title>
     <link rel="icon" href="Assets/logo-removebg-preview.ico">
-    <link rel="stylesheet" href="CSS/template.css">
+    <link rel="stylesheet" href="CSS/shared.css">
     <link rel="stylesheet" href="CSS/wallet.css">
     <script src="https://kit.fontawesome.com/c7de107e5c.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -17,104 +17,139 @@
 
 <body data-page="investing">
 
-    <header id="header" role="banner"></header>
-    <aside id="aside" class="sidebar" role="complementary" aria-labelledby="aside-title"></aside>
+    <header id="header"></header>
+    <aside id="main-aside" class="sidebar toggleable" data-toggle-class="translatePX" data-focusable="true" inert data-use-inert></aside>
 
     <main>
 
-        <section class="wallet-info">
+        <div class="wallet-sections-wrapper">
 
-            <div class="balance-block">
-                <h1 class="balanceH1">Your Wallet</h1>
+            <section class="possessed-cryptos-section">
 
-                <div class="test-container">
+                <h2> Cryptos in Possession</h2>
 
-
-                    <ul class="wallet-list">
-                        
-                        <li class="balance-blockList" id="total-balance">  
-                            
-                            <span>
-
-                                <i class="fa-solid fa-coins"></i>
-                                Your balance
-                        
-                            </span>
-
-                        </li>
+                <span class="portfolio-value"></span>
 
 
-                        <li class="balance-blockList" id="total-firstCoin">    
+                <div class="graph-wrapper">
 
-                            <span>
-                                <i class="fa-solid fa-circle yellow-color"></i>
-                                BTC
-                            </span>
-
-                        </li>
-
-                        
-                        <li class="balance-blockList" id="total-secondCoin">  
-
-                            <span><i class="fa-solid fa-circle blue-color"></i>
-                                ETH
-                            </span>
-
-                        </li>
-
-                        <li class="balance-blockList" id="total-thirdCoin">   
-
-                            <span><i class="fa-solid fa-circle green-color"></i>
-                                TETHER
-                            </span>
-
-                        </li>
-
-                        <li class="balance-blockList" id="total-othersCoin">
-
-                            <span><i class="fa-solid fa-circle red-color"></i>
-                                Others
-                            </span>
-
-                        </li>
-                        
-                    </ul>
-
-                    <div class="temp-container">
-                        <canvas class="wallet-doughnut" id="wallet-chart"></canvas>
+                    <div class="graph-container">
+                        <canvas class="wallet-doughnut" id="wallet-chart" role="image" aria-label="Visual representation in a graph format of the following percentages"></canvas>
                     </div>
+
+                    <ul id="html-legend"></ul>
+
+                </div>
+                    
+
+
+            </section>
+
+            <section class="transactions-section">
+
+                <h2>Last Transactions</h2>
+
+
+                <div class="wallet-table-wrapper">
+
+                        
+                    <table class="transactions-table">
+
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Crypto</th>
+                                <th>Action</th>
+                                <th>Amount</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td class="table-date">28/10/2025</td>
+                                <td>BTC</td>
+                                <td>Buy</td>
+                                <td>0.02</td>
+                                <td>$1,420</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-date">20/10/2025</td>
+                                <td>ETH</td>
+                                <td>Sell</td>
+                                <td>0.50</td>
+                                <td>$1,010</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-date">18/10/2025</td>
+                                <td>ADA</td>
+                                <td>Buy</td>
+                                <td>350</td>
+                                <td>$163</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-date">14/10/2025</td>
+                                <td>SOL</td>
+                                <td>Buy</td>
+                                <td>5.3</td>
+                                <td>$890</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-date">10/10/2025</td>
+                                <td>XRP</td>
+                                <td>Sell</td>
+                                <td>200</td>
+                                <td>$122</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-date">08/10/2025</td>
+                                <td>BTC</td>
+                                <td>Buy</td>
+                                <td>0.015</td>
+                                <td>$1,070</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-date">02/10/2025</td>
+                                <td>ETH</td>
+                                <td>Buy</td>
+                                <td>0.75</td>
+                                <td>$1,560</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
 
                 </div>
 
-               
 
-            </div>
-        
-        </section>
+            </section>
 
-        <section class="wallet-cryptoList">
+        </div>
 
-            <h1 class="balance-displayer">List of Cryptos</h1>
+  
 
-            <div class="crypto-redirect">
-                <a href="crypto.html">
-                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                    Buy / Sell
-                </a>
-            </div>
-          
-            <ul class="crypto-listContainer">
+        <div class="summary-bar">
+            <span>📈 Total Trades: 132</span>
+            <span>💹 Avg. Profit: +3.8%</span>
+            <span>🏆 Top Holding: Bitcoin</span>
+            <span>🪙 Cryptos Held: 8</span>
+            <span>📈 24h Change: +2.3%</span>
+            <span>⚡ Biggest Gain: SOL +12%</span>
+        </div>
+  
 
-             
 
-            </ul>
-
-        </section>
-    
     </main>
-
-    <div id="language-container"></div>
-    <div id="country-container"></div>
 
     <footer id="footer"></footer>
     

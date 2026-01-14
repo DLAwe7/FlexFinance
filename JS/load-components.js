@@ -1,8 +1,6 @@
-import {toggleCountryMenu, selectCountry} from './Components/country-menu.js';
-import {openSidebar, closeSidebar, displayInvesting} from './Components/sidebar.js';
-import {toggleLangMenu, selectLanguage} from './Components/language-menu.js';
-import {openDropdownMenu, toggleLightMode, applySavedTheme} from './Components/dropdown-menu.js';
-import {logOut} from './Components/log-out.js';
+import {toggleDropdownMenu, toggleLightMode, applySavedTheme} from './Components/dropdown-menu.js';
+import {toggleAccordion, toggleMenu} from "./functionality.js"
+import { handleClickOutside, handleEsc, inertToggle, setAriaCurrent } from './accessibility.js';
 
 
 
@@ -14,49 +12,16 @@ async function loadComponent(id, file){
 
 async function init(){
 
-    const userStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
-    
-    if (userStatus === null || userStatus === false) {
-
-        const guestUser = {
-        username: "Guest",
-        email: "guest@example.com",
-        password: "",
-        telephone: "",
-        birthday: ""
-        };
-
-        localStorage.setItem("isLoggedIn", JSON.stringify(true));
-        localStorage.setItem("userData", JSON.stringify(guestUser));
-    }
-
     const components = [
         {id: "header", file: "header.html"},
-        {id: "aside", file: "aside.html"},
-        {id: "footer", file: "footer.html"},
-        {id: "language-container", file: "language-container.html"}, 
-        {id: "country-container", file: "country-container.html"}
+        {id: "main-aside", file: "aside.html"},
+        {id: "footer", file: "footer.html"}
     ];
 
     
 
     await Promise.all(components.map(({id, file}) => loadComponent(id, file)));
 
-    const loggedIn = document.querySelector(".header-right");
-    const logInButton = document.querySelector(".log-inHBtn");
-
-    if((userStatus !== true || userStatus === null)){
-        
-        loggedIn.classList.remove("logInVis");
-        logInButton.classList.add("logInVis");
-        
-    }else{
-
-        logInButton.classList.remove("logInVis");
-        loggedIn.classList.add("logInVis");       
-    }
-
-    
     applySavedTheme();
     currentPageInit();
     
@@ -64,33 +29,48 @@ async function init(){
 
 function currentPageInit(){
 
-    document.querySelector(".sidebarInvesting").addEventListener("click", displayInvesting); 
 
-    document.getElementById("toggleCountryMenu").addEventListener("click", toggleCountryMenu);
-    document.getElementById("countryBtn").addEventListener("click", toggleCountryMenu);
-    document.querySelectorAll(".countries").forEach((countryElement) => {
-        countryElement.addEventListener('click', selectCountry);
+    // === Aria labels updaters ===
+
+    setAriaCurrent();
+
+    // === Global Handlers ===
+
+    document.addEventListener("keydown", handleEsc);
+    document.addEventListener("click", handleClickOutside);
+
+
+    // === Sidebar toggles ====
+
+    document.querySelectorAll('.main-sidebar-toggle').forEach(btn => btn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggleMenu(event.currentTarget);
+    }));
+
+
+
+    // === Accordions ===
+
+    document.querySelectorAll(".accordion-button").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+
+            e.stopPropagation();
+            toggleAccordion(btn);
+            btn.classList.toggle("active")
+
+        });
     });
-    
-
-    document.getElementById("toggleLanguageMenu").addEventListener("click", toggleLangMenu);
-    document.getElementById("langBtn").addEventListener("click", toggleLangMenu);
-    document.querySelectorAll(".languages").forEach((languageElement) => {
-        languageElement.addEventListener('click', selectLanguage);
-
-    });
 
 
-    document.querySelector(".optionsBtn").addEventListener("click", openSidebar);
-    document.getElementById("closingButton").addEventListener("click", closeSidebar);
+    // === Header dropdwon menu ===
 
-    document.getElementById("myImage").addEventListener("click", openDropdownMenu);
+
+    document.querySelector(".header-image-wrapper").addEventListener("click", toggleDropdownMenu);
     document.getElementById("theme-toggle").addEventListener("click", toggleLightMode);
 
-
-    document.getElementById("logout-button").addEventListener("click", logOut); 
-    
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+
 

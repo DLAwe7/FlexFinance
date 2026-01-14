@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="icon" href="Assets/logo-removebg-preview.ico">
-    <link rel="stylesheet" href="CSS/template.css">
+    <link rel="stylesheet" href="CSS/shared.css">
     <link rel="stylesheet" href="CSS/dashboard.css">
     <script src="https://kit.fontawesome.com/c7de107e5c.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -16,8 +16,8 @@
 
 <body data-page="main-page">
 
-    <header id="header" role="banner"></header>
-    <aside id="aside" class="sidebar" role="complementary" aria-labelledby="aside-title"></aside>
+    <header id="header"></header>
+    <aside id="main-aside" class="sidebar toggleable" data-toggle-class="translatePX" data-focusable="true" inert data-use-inert></aside>
 
     <main>
 
@@ -25,7 +25,7 @@
 
             <section class="balance-displayer">
 
-                <h1 class="grid-header">Your balance</h1>
+                <h2 class="grid-header">Your balance</h2>
 
                 <div class="grid-card">
 
@@ -44,18 +44,18 @@
 
                     <div class="balance-gridContainer">
 
-                        <i class="fa-solid fa-sack-dollar"></i>
+                        <i class="fa-solid fa-sack-dollar" aria-hidden="true"></i>
 
                         <div class="balance-textContainer">
 
-                            <h1>Loans</h1>
+                            <h3>Loans</h3>
                             <span>Obtain an answer to your request inmediatly</span>
 
                         </div>
 
                     </div>
                     
-                    <i class="fa-solid fa-angle-right icon-arrow"></i>
+                    <i class="fa-solid fa-angle-right icon-arrow"  aria-hidden="true"></i>
 
                 </a>
 
@@ -63,18 +63,18 @@
 
                     <div class="balance-gridContainer">
 
-                        <i class="fa-solid fa-chart-line"></i>
+                        <i class="fa-solid fa-chart-line"  aria-hidden="true"></i>
                         
                         <div class="balance-textContainer">
 
-                            <h1>Invest</h1>
+                            <h3>Invest</h3>
                             <span>Invest starting from 1€</span>
 
                         </div>
 
                     </div>
                     
-                    <i class="fa-solid fa-angle-right icon-arrow"></i>
+                    <i class="fa-solid fa-angle-right icon-arrow"  aria-hidden="true"></i>
 
                 </a>
 
@@ -82,36 +82,36 @@
 
                     <div class="balance-gridContainer">
 
-                        <i class="fa-brands fa-bitcoin"></i>
+                        <i class="fa-brands fa-bitcoin"  aria-hidden="true"></i>
 
                         <div class="balance-textContainer">
 
-                            <h1>Crypto</h1>
+                            <h3>Crypto</h3>
                             <span>Invest starting from 1€</span>
 
                         </div>
                     </div>
                     
-                    <i class="fa-solid fa-angle-right icon-arrow"></i>
+                    <i class="fa-solid fa-angle-right icon-arrow"  aria-hidden="true"></i>
 
                 </a>
 
-                <a class="grid-card  grid-anchor" href="account.html">
+                <a class="grid-card  grid-anchor last-anchor" href="account.html">
 
                     <div class="balance-gridContainer">
 
-                        <i class="fa-solid fa-link"></i>
+                        <i class="fa-solid fa-link"  aria-hidden="true"></i>
 
                         <div class="balance-textContainer">
 
-                            <h1>Link accounts</h1>
+                            <h3>Link accounts</h3>
                             <span>Link external accounts</span>
 
                         </div>
 
                     </div>
                     
-                    <i class="fa-solid fa-angle-right icon-arrow"></i>
+                    <i class="fa-solid fa-angle-right icon-arrow"  aria-hidden="true"></i>
 
                 </a>
 
@@ -119,7 +119,7 @@
 
             <section class="goal-tracker">
 
-                <h1 class="grid-header">Savings Goal Tracker</h1>
+                <h2 class="grid-header">Savings Goal Tracker</h2>
 
                 <div class="grid-card">
                     <span>Avr. monthly savings:</span>
@@ -136,7 +136,7 @@
                     <span class="totalSavings"></span>
                 </div>
 
-                <div class="grid-card progress-barContainer">
+                <div class="grid-card progress-barContainer  last-anchor">
 
                     <div class="progress-row">
                         <span class="bar-containerProgress">Progress:</span>
@@ -154,9 +154,9 @@
 
             <section class="monthly-expenses" id="displayGraph">
 
-                <h1 class="grid-header">Expenses</h1>
+                <h2 class="grid-header">Expenses</h2>
 
-                <canvas class="bar-graph" id="myGraph"></canvas>
+                <canvas class="bar-graph" id="myGraph" aria-label="Visual representation of the monthly expenses in a graph format"></canvas>
 
             </section>
 
@@ -177,7 +177,7 @@
                 </table>
 
                 <div class="transactions-redirect">
-                    <a href="transaction-history.html">Show more</a>
+                    <a href="transaction-history.html">Show All</a>
                 </div>
 
             </section>
@@ -189,9 +189,9 @@
 
             <section class="expenses-doughnut" id="displayChart">
 
-                <h1 class="grid-header">Top expenses</h1>
+                <h2 class="grid-header">Top expenses</h2>
 
-                <canvas class="doughnut-graph" id="myChart"></canvas>
+                <canvas class="doughnut-graph" id="myChart" aria-label="Visual representation of the top expenses in a graph format"></canvas>
 
             </section>
 
@@ -200,9 +200,6 @@
         </section>
 
     </main>
-
-    <div id="language-container"></div>
-    <div id="country-container"></div>
 
     <footer id="footer"></footer>
 

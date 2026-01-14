@@ -1,15 +1,23 @@
 {
-    "Balance": 30000,
-    "AverageSav": 33,
-    "LastDep": 100,
-    "TotalSav": 1250,
-    "Progress": 300,
-    "Goal": 2000,
-    "currency": "€",
-    "cryptoBalance": 52374.69,
-    "firstCoin": 48.20,
-    "secondCoin": 39.80,
-    "thirdCoin": 6.5,
-    "others": 5.5
+  "balance": 30000,
+  "averageSavings": 33,
+  "lastDeposit": 100,
+  "totalSavings": 1250,
+  "progress": 1100,
+  "goal": 2000,
+  "currency": "€",
+  "crypto": {
+    "balance": 52374.69,
+    "coins": [
+      { "name": "Bitcoin", "amount": 32.5 },
+      { "name": "Ethereum", "amount": 22.5 },
+      { "name": "Tether", "amount": 11.0 },
+      { "name": "Solana", "amount": 10.0 },
+      { "name": "Cardano", "amount": 9.0 },
+      { "name": "XRP", "amount": 6.0 },
+      { "name": "Avalanche", "amount": 4.0 },
+      { "name": "Others", "amount": 5.0 }
+    ]
+  }
 }
 

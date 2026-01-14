@@ -11,7 +11,3 @@ export async function fetchData(sourceUrl, options = {}){
   }
 
 }
-
-export function formatNumber(number){
-    return new Intl.NumberFormat('de-DE').format(number);
-  }

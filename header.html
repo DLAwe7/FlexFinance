@@ -1,30 +1,36 @@
-<nav>
+<nav class="header-nav">
+
     <div class="header-left">
-        <button class="optionsBtn" aria-label="Open Sidebar"><i class="fa-solid fa-bars"></i></button>
 
-        <div id="row">
+        <button class="optionsBtn main-sidebar-toggle" aria-label="Open Sidebar" aria-controls="main-aside" aria-expanded="false" aria-label="Open sidebar button"><i class="fa-solid fa-bars"></i></button>
 
-            <i class="fa-solid fa-building"></i>
-            <span>Your Company</span>
+        <a id="row" href="./home.html" aria-label="Redirect to home page">
 
-        </div>
+            <i class="fa-solid fa-building" aria-hidden="true"></i>
+            <span aria-hidden="true">FlexFinance</span>
+
+        </a>
 
     </div>
 
     <div class="header-right">
 
-        <img src="Assets/defaultUserImage.webp" id="myImage" alt="user image">
+        <button class="header-image-wrapper" aria-controls="header-dropdown-menu" aria-expanded="false" aria-label="Settings dropdown menu toggle button">
+            <img src="Assets/user-review2.webp" id="myImage" alt="user image">
+        </button>
 
-        <ul class="dropdown-menu">
+
+        <ul class="dropdown-menu toggleable" id="header-dropdown-menu" data-toggle-class="show">
 
             <li id="myRow">
 
-                <img src="Assets/defaultUserImage.webp" id="userImage" alt="user image">
 
+                <a href="account.html"><img src="Assets/user-review2.webp" id="userImage" alt="user image"></a>
+               
                 <div id="myUser">
 
-                    <span class="header-UserName"></span>
-                    <span class="header-atUserName"></span>
+                    <span class="header-UserName">Emily Watson</span>
+                    <span class="header-atUserName">@emilywatson</span>
 
                 </div>
                 
@@ -33,7 +39,7 @@
             <li class="menuList">
                 
                 <a href="account.html" class="menu-listBtn" aria-label="Account Settings">
-                    <i class="fa-solid fa-user header-icon"></i>
+                    <i class="fa-solid fa-user header-icon"  aria-hidden="true"></i>
                     Account
                 </a>
 
@@ -41,56 +47,17 @@
 
             <li class="menuList">
 
-                <button class="menu-listBtn" id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                <button class="menu-listBtn" id="theme-toggle" aria-label="Toggle Dark/Light Mode"  type="button">
 
-                    <i class="fa-solid fa-moon moon"></i>
-                    <i class="fa-solid fa-sun sun"></i>
+                    <i class="fa-solid fa-moon moon"  aria-hidden="true"></i>
+                    <i class="fa-solid fa-sun sun"  aria-hidden="true"></i>
                     Theme
 
                 </button>      
 
             </li>
 
-            <li class="menuList" id="toggleLanguageMenu">
-                
-                <button class="menu-listBtn">
-                    
-                    <i class="fa-solid fa-language header-icon"></i>
-                    Language 
-
-                </button>
-
-            </li>
-
-            <li class="menuList" id="toggleCountryMenu">
-                
-                <button class="menu-listBtn">
-
-                    <i class="fa-solid fa-globe header-icon"></i>
-                    Country
-
-                </button>
-
-            </li>
-
-            <li class="menuList">
-                
-                <button class="menu-listBtn" id="logout-button" aria-label="Log Out">
-
-                    <i class="fa-solid fa-right-from-bracket header-icon"></i>
-                    Log Out 
-
-                </button>  
-
-            </li>
-
         </ul>
-
-    </div>
-
-    <div class="log-inHBtn">
-
-        <a href="account-forms.html" aria-label="Log In">Log-in</a>
 
     </div>
 

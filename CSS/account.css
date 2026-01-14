@@ -1,96 +1,154 @@
-main{
+main {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 50px 30px 50px;
+    gap: 50px;
 }
 
-.container{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 80%;
-    background-color: var(--general-bg-color);
+.container.personal-info {
+    width: 50%;
 }
 
-.menuTitle{
+.menuTitle {
     text-align: center;
-    background-color: var(--titles-color);
     width: 100%;
     padding: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: hsla(0, 0%, 100%, 0.07);
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
-
-.card{
+.personal-info-card {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+}
+
+.image-card {
+    padding: 20px 0 0 0;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid black;
-    
-
+    gap: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.card:last-child{
-    border-bottom: none;
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
 }
 
-.modifyBtn{
-    border-radius: 20px;
-    background: none;
-    background-color: var(--button-color);
-    border: 1px solid black;
-    padding: 5px;
+.image-label {
+    display: flex;
+    justify-content: center;
+}
+
+#change-picture {
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
     cursor: pointer;
 }
 
-.modifyBtn:hover{
+#upload-img {
+    display: none;
+}
+
+.card.info-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex: 1;
+}
+
+.divisor {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.settings-category {
+    width: 40%;
+}
+
+.category-info {
+    color: inherit;
+}
+
+.container {
+    border-radius: 20px;
+    border: 1px solid hsl(0, 0%, 43%);
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+button:focus-visible {
+  outline: 2px solid dodgerblue;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px;
+}
+
+.card:last-child {
+    border-bottom: none;
+}
+
+.modifyBtn {
+    border-radius: 50%;
+    background: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: fit-content;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.modifyBtn i {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.modifyBtn:hover {
     background-color: var(--button-color-hover);
     transition: .15s;
 }
 
-section span{
-    font-size: 1rem;
-}
-
-
-#change-picture{
-    padding: 10px;
-    max-width: 150px;
-    border-radius: 50%;
-}
-
-#change-picture{
-    cursor: pointer;
-}
-
-#upload-img{
-    display: none;
-}
-
-.image-card{
+.modifyBtn.alter-download,
+.modifyBtn.alter-delete {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background-color: var(--card-color);
-    padding: 20px;
-    border-bottom: 1px solid black;
-
+    padding: 5px 15px;
+    gap: 10px;
+    border-radius: 20px;
 }
 
-.image-container{
+.modifyBtn.alter-delete {
+    background-color: hsla(0, 100%, 47%, 0.615);
+}
+
+.modifyBtn.alter-download {
+    background-color: hsla(147, 100%, 50%, 0.642);
+}
+
+.other-settings-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 32px;
+    flex: 1;
 }
 
-.image-container span{
-    padding: 10px;
-    font-weight: bold;
-}
-
-.edit-cardData{
+.edit-cardData,
+.non-operative-container {
     position: fixed;
     display: none;
     flex-direction: column;
@@ -104,59 +162,90 @@ section span{
     width: clamp(300px, 50%, 400px);
     background-color: var(--body-bg-color);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    gap: 10px;
 }
 
+.non-operative-container{
+    width: 300px;
+    height: 200px;
+}
 
+.edit-cardData i {
+    cursor: pointer;
+}
 
-.button-type{
+.button-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     align-self: flex-end;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
-.submit-type{
+.submit-type {
     margin-top: 10px;
     border: none;
     background-color: var(--button-color);
     border-radius: 20px;
-    padding: 5px;
+    padding: 5px 15px;
     cursor: pointer;
 }
 
-.submit-type:hover{
-
+.submit-type:hover {
     background-color: var(--button-color-hover);
-
 }
 
-.edit-cardData i{
-    cursor: pointer;
-}
-
-
-.input-container{
+.input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    
+    gap: 10px;
 }
 
-#inputModify{
+.inputModify {
     color: black;
     width: clamp(270px, 50%, 500px);
 }
 
-
-
-@media (max-width: 900px){
-
-    .container{
-        width: 100%;
-    }
-   
-
-   
+section span {
+    font-size: 1rem;
 }
 
+.edit-cardData.open,
+.non-operative-container.open{
+    display: flex;
+}
+
+@media (max-width: 1100px) {
+    main {
+        flex-direction: column;
+    }
+    .container.personal-info,
+    .other-settings-container,
+    .personal-info-card,
+    .container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 10px;
+        gap: 25px;
+    }
+    .category-info {
+        color: hsl(0, 1%, 81%);
+    }
+}
+
+@media (max-width: 500px) {
+    .divisor {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 5px;
+    }
+}

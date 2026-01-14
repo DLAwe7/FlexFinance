@@ -1,58 +1,147 @@
-import {fetchData, formatNumber} from './Components/fetchData.js';
+import { fetchData } from './Components/fetchData.js';
+import { formatNumber } from './functionality.js';
 
-document.addEventListener("DOMContentLoaded", function(){
+let allTransactions = [];
+let filteredTransactions = [];
+let visibleCount = 10;
+let currentSort = { column: null, asc: true };
 
-    (async function (){
+function formatDateEU(isoDate) {
+    const d = new Date(isoDate);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+const parseDate = (isoDate) => new Date(isoDate);
+
+document.addEventListener("DOMContentLoaded", async () => {
     const userHistory = await fetchData("./JSON/user-history.json");
 
-    createTransactionCard(userHistory);
-    })();
- 
-})
+    allTransactions = userHistory;
+    filteredTransactions = [...allTransactions];
 
-function createTransactionCard(usersData){
+    renderTransactions(filteredTransactions);
+    setupFilters();
+});
 
-    const transactionsTable = document.querySelector(".transactions-history")
+function renderTransactions(data) {
+    const table = document.querySelector(".transactions-history");
 
-    usersData.forEach(data => {
+    table.innerHTML = `
+        <tr id="rowTitle">
+            <th role="button" tabindex="0" data-column="date" aria-label="Sort by date" aria-sort="none">
+                Date <i class="fa-solid fa-sort" aria-hidden="true"></i>
+            </th>
+            <th role="button" tabindex="0" data-column="reason" aria-label="Sort by reason" aria-sort="none">
+                Reason <i class="fa-solid fa-sort" aria-hidden="true"></i>
+            </th>
+            <th role="button" tabindex="0" data-column="amount" aria-label="Sort by transaction" aria-sort="none">
+                Transaction <i class="fa-solid fa-sort" aria-hidden="true"></i>
+            </th>
+        </tr>
+    `;
 
-        let sign;
+    const dataToShow = data.slice(0, visibleCount);
 
-        if(data.expense === true){
-            sign = "-"
-        }else{
-            sign = "+"
+    dataToShow.forEach(item => {
+        const sign = item.expense ? "-" : "+";
+        const row = document.createElement("tr");
+        row.classList.add("table-row");
+
+        row.innerHTML = `
+            <td>${formatDateEU(item.date)}</td>
+            <td>${item.reason}</td>
+            <td>${sign} ${formatNumber(item.amount)}${item.currency}</td>
+        `;
+
+        table.append(row);
+    });
+
+    handleLoadMoreButton(data);
+    attachSortingHandlers();
+}
+
+function handleLoadMoreButton(data) {
+    const loadMoreBtn = document.getElementById("load-more");
+    const wrapper = document.querySelector(".transaction-button-wrapper");
+
+    if (data.length > visibleCount) {
+        loadMoreBtn.style.display = "block";
+        wrapper.style.display = "block";
+    } else {
+        loadMoreBtn.style.display = "none";
+        wrapper.style.display = "none";
+    }
+
+    loadMoreBtn.onclick = () => {
+        visibleCount += 10;
+        renderTransactions(filteredTransactions);
+    };
+}
+
+function attachSortingHandlers() {
+    document.querySelectorAll("th[role='button']").forEach(th => {
+        th.onclick = () => sortData(th.dataset.column);
+    });
+}
+
+function sortData(column) {
+    if (currentSort.column === column) {
+        currentSort.asc = !currentSort.asc;
+    } else {
+        currentSort = { column, asc: true };
+    }
+
+    document.querySelectorAll(".transactions-history th[role='button']").forEach(th => {
+        if (th.dataset.column === column) {
+            th.setAttribute('aria-sort', currentSort.asc ? 'ascending' : 'descending');
+        } else {
+            th.setAttribute('aria-sort', 'none');
         }
+    });
 
-        const tableRow = document.createElement("tr");
+    filteredTransactions.sort((a, b) => {
+        let valA = a[column], valB = b[column];
 
-            tableRow.classList.add("table-row");
+        if (column === "amount") return currentSort.asc ? valA - valB : valB - valA;
+        if (column === "date") {
+            const da = parseDate(valA);
+            const db = parseDate(valB);
+            return currentSort.asc ? da - db : db - da;
+        }
+        return currentSort.asc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+    });
 
-        const tableD1 = document.createElement("td");
+    renderTransactions(filteredTransactions);
+}
 
-            tableD1.classList.add("row");
+function setupFilters() {
+    const searchInput = document.getElementById("search-filter");
+    const dateInput = document.getElementById("date-filter");
 
-            tableD1.textContent = `${data.date}`;
+    searchInput.addEventListener("input", () => {
+        const term = searchInput.value.toLowerCase();
 
-        const tableD2 = document.createElement("td");
+        filteredTransactions = allTransactions.filter(t =>
+            t.reason.toLowerCase().includes(term) ||
+            String(t.amount).includes(term) ||
+            formatDateEU(t.date).includes(term)
+        );
 
-            tableD2.classList.add("row");
-            tableD2.textContent = `${data.reason}`;
+        visibleCount = 10;
+        renderTransactions(filteredTransactions);
+    });
 
-        const tableD3 = document.createElement("td");
+    dateInput.addEventListener("input", () => {
+        const dateVal = dateInput.value;
 
-            tableD3.classList.add("row");
-            tableD3.textContent = `${sign} ${formatNumber(data.amount)}${data.currency}`;
+        filteredTransactions = dateVal
+            ? allTransactions.filter(t => t.date === dateVal)
+            : [...allTransactions];
 
-
-
-        tableRow.append(tableD1)
-        tableRow.append(tableD2)    
-        tableRow.append(tableD3)
-        transactionsTable.append(tableRow)
-    })
-
-
-
-
+        visibleCount = 10;
+        renderTransactions(filteredTransactions);
+    });
 }

@@ -1,3 +1,16 @@
+import { toggleMenu } from "../functionality.js";
+
+
+export function toggleDropdownMenu(event){ 
+
+    event.stopPropagation();
+
+    const button = event.currentTarget;
+
+    toggleMenu(button);
+};
+
+
 export function applySavedTheme(){
 
     let savedTheme = localStorage.getItem("theme");
@@ -21,40 +34,12 @@ export function applySavedTheme(){
 
 }
 
-
-
-export function openDropdownMenu(event){ 
-
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-
-    const storedUser = JSON.parse(localStorage.getItem("userData"));
-
-    event.stopPropagation();
-
-    dropdownMenu.classList.toggle("show");
-
-    document.querySelector(".header-UserName").textContent = `${storedUser.username}`
-    document.querySelector(".header-atUserName").textContent = `@${storedUser.username}`
-
-    document.addEventListener("click", closeDropdownMenu);
-    
-};
-
-export function closeDropdownMenu(event){
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const themeBtn = document.querySelector("#theme-toggle");
-
-    if (!themeBtn.contains(event.target)) {
-        dropdownMenu.classList.remove("show");
-        document.removeEventListener("click", closeDropdownMenu);
-    }
-     
-};
-
 export function toggleLightMode(){
 
     const sun = document.querySelector(".sun");
     const moon = document.querySelector(".moon");
+
+    if (!sun || !moon) return;
 
     const isLightMode = document.body.classList.toggle("light-mode");
 

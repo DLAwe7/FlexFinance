@@ -4,21 +4,21 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+ 
     
 }
 
 .dashboard-container{
-    background-color: var(--bg-color);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     grid-template-areas: 
     "d1 d2 d5"
     "d3 d3 d4"
     ;
-    gap: 10px;
+    gap: 15px;
     padding: 20px;
-    width: 80%;
-    
+    width: 95%;    
 }
 
 /* #endregion */
@@ -32,24 +32,38 @@ main{
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+section{
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
 .grid-card{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
     width: 100%;
-    padding: 20px;
-    background-color: var(--row-color);
-    flex-grow: 1;
+    max-width: 100%;
+    padding: 10px 12px;
+    background-color: var(--alternated-row-color);
+    flex: 1;
+    border-bottom: 1px solid hsla(180, 12%, 95%, 0.316);
+    transition: .15s;
+}
+
+.grid-card i{
+    width: 25px;
 }
 
 .grid-anchor:hover{
     cursor: pointer;
-    background-color: var(--dashboard-hover);
+    background-color: var(--alternated-dashboard-hover);
 }
 
 
 .grid-card:nth-child(2n){
-    background-color: var(--general-bg-color);
+    background-color: var(--row-color);
     
 }
 
@@ -94,6 +108,7 @@ main{
     align-items: center;
     width: 100%;
     background-color: var(--titles-color);
+    border-bottom: 1px solid hsla(180, 12%, 95%, 0.316);
 }
 
 .progress-row{
@@ -113,7 +128,7 @@ main{
 
 .progress-accomplished{
     height: 100%;
-    background: linear-gradient(to right, hsl(216, 76%, 57%), hsl(216, 76%, 67%));
+    background: linear-gradient(to right, hsl(42, 76%, 57%), hsl(99, 100%, 50%));
     transition: width 0.5s ease-in-out;
     
 }
@@ -138,10 +153,12 @@ main{
     display: block;
     max-height: 100%;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: var(--graph-bg-color);
 }
 
 .bar-graph {
     max-height: 360px;
+    padding: 0px 5px 5px 5px;
 
 }
 
@@ -165,18 +182,19 @@ main{
 }
 
 .transactions-redirect a{
-    padding: 3px;
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
 .transactions-redirect a:hover{
     background-color: var(--form-hover-color);
     transition: .15s;
-    border-radius: 20px;
+
 }
 
 .transactions-history{
     width: 100%;
-    background-color: var(--general-bg-color);
+    background-color: var(--alternated-row-color);
     table-layout: fixed;
     border-collapse: collapse;
     text-align: center;
@@ -188,15 +206,25 @@ caption{
     font-weight: bold;
     padding: 20px;
     background-color: var(--titles-color);
+    border-bottom: 1px solid hsla(180, 12%, 95%, 0.316);
 }
 
 td{
-    padding: 20px;
+    padding: 5px 15px;
 }
 
 th{
-    padding: 10px;
+    padding: 5px 15px;
     background-color: var(--row-header);
+    border-bottom: 1px solid hsla(180, 12%, 95%, 0.316);
+}
+
+.grid-card:last-child{
+    border-bottom: none;
+}
+
+.table-row{
+    border-bottom: 1px solid hsla(180, 12%, 95%, 0.316);
 }
 
 tr:nth-of-type(2n){
@@ -216,7 +244,8 @@ tr:nth-of-type(2n){
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);   
+    background-color: var(--graph-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .doughnut-graph{
@@ -247,7 +276,7 @@ tr:nth-of-type(2n){
 
     .dashboard-container{
         padding: 0;
-        gap: 0px;
+        gap: 20px;
         width: 100%;
         grid-template-areas: 
         "d1"
@@ -265,10 +294,10 @@ tr:nth-of-type(2n){
     .transactions-container,
     .expenses-doughnut{
         width: 100%;
-        border-top: none;
-        border-right: none;
-        border-left: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    section{
+        box-shadow: none;
     }
     
     
@@ -276,6 +305,38 @@ tr:nth-of-type(2n){
     
 }
 
+@media (max-width: 500px){
+
+    .grid-card,
+    .progress-row{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+    
+
+    }
+
+    main{
+        padding: 10px;
+    }
+
+    .grid-anchor{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    td{
+        padding: 5px 5px;
+    }
+
+    th{
+        padding: 5px 5px;
+        font-size: 1.1rem;
+    }
+
+}
 
 /* #endregion */
 

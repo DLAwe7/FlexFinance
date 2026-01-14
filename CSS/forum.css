@@ -1,17 +1,165 @@
 main{
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    gap: 40px;
+    position: relative;
+    gap: 20px;
+    padding: 0px 20px 0px 20px;
+    overflow-x: hidden;
+}
+
+.section-wrapper{
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
 }
 
 .forum-container{
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    padding-top: 0px;
-    width: 75%;
+    width: 100%;
 }
 
+.navigation-block{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation-block nav{
+    margin-right: 30px;
+}
+
+.navigation-block a{
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.navigation-block a:hover{
+    background-color: hsla(0, 0%, 100%, 0.163);
+}
+
+.navigation-block ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px
+
+}
+
+.navigation-block img{
+    width: 100px;
+}
+
+.left-aside{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    flex-shrink: 0;
+}
+
+.left-aside h3{
+    padding: 20px 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+}
+
+.activity-list,
+.categories-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.categories-list li,
+.activity-list li{
+    display: flex;
+    padding: 10px 10px 10px 0px;
+    width: 100%;
+
+ 
+}
+
+.categories-list button,
+.activity-list span{
+    background: none;
+    border: none;
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color .1s ease;
+}
+
+.categories-list button:hover,
+.activity-list span:hover{
+    background-color: hsla(0, 0%, 100%, 0.163)
+}
+
+.right-aside{
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    gap: 20px;
+    flex-shrink: 0;
+    z-index: 20;
+
+    max-width: 300px;
+    padding: 20px;
+}
+
+.right-aside h2{
+    text-align: center;
+    border-bottom: 1px solid gray;
+    padding-bottom: 20px;
+}
+
+.right-aside h3{
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+.right-aside strong{
+    font-size: 1rem;
+}
+
+.right-aside div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 20px;
+}
+
+.right-aside ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right-aside p,
+.right-aside span{
+    font-size: 1rem;
+}
+
+.right-aside li,
+.right-aside p{
+    padding-left: 10px;
+}
+
+.user-week span{
+    padding-left: 10px;
+
+}
+
+.desktop-hidden{
+    display: none;
+}
 
 /* #region  -------------------------------------------           SEARCHBAR               ------------------------------------------------ */
 
@@ -23,7 +171,7 @@ main{
     background: none;
     cursor: pointer;
     gap: 5px;
-    padding: 5px;
+    padding: 5px 15px;
     
 }
 
@@ -32,35 +180,29 @@ main{
     border-radius: 20px;
 }
 
-#searchingBar{
-    display: flex;
-    width: 100%;
-    padding: 10px;
-    gap: 10px;
-}
-
 .search-container{
-    position: relative;
-    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    gap: 15px;
+    width: clamp(150px, 70vw, 500px);
+    flex-shrink: 1;
+    margin: 0 auto;
 }
 
 #searchBar{
+    flex-shrink: 1;
     display: flex;
-    width: clamp(50px, 80%, 800px);
-    height: 40px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    padding-left: 50px;
+    width: 100%;
+    border: none;
     outline: none;
     color: black;
 }
 
 
 #myLabel{
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
     z-index: 2;
     color: gray;
     pointer-events: none;
@@ -103,11 +245,17 @@ main{
     display: flex;
     flex-direction: column;
     width: 100%;
-    border-bottom: 1px solid black;
-    background-color: var(--general-bg-color);
-    cursor: pointer;
-    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0px 0px 20px 0px;
+    gap: 10px;
 }
+
+.cards-listContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 
 .first-card{
     border-top: 1px solid black;
@@ -117,8 +265,13 @@ main{
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 10px;
-    margin-bottom: 4px;
+}
+
+.header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .forumImage{
@@ -136,204 +289,285 @@ main{
 
 .icon-container{
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
 }
 
-.fa-solid.fa-share:hover{
+.icon-container button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icons-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+
+}
+
+.icons-wrapper i{
+    font-size: 1.1rem;
+
+}
+
+.cards-wrapper{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.counter{
+    font-size: 1rem;
+}
+
+.icon-container button:hover .fa-solid.fa-share{
     color:rgb(251, 255, 0);
-    cursor: pointer;
+
 }
 
-.fa-solid.fa-thumbtack:hover{
-    color:rgb(255, 0, 0);
-    cursor: pointer;
-}
-
-.fa-solid.fa-comment:hover{
+.icon-container button:hover .fa-solid.fa-comment{
     color:rgb(25, 206, 215);
     cursor: pointer;
 }
 
-.fa-solid.fa-thumbs-down:hover{
+.icon-container button:hover .fa-solid.fa-thumbs-down{
     color:rgba(232, 20, 45, 0.615);
     cursor: pointer;
 }
 
-.fa-solid.fa-thumbs-up:hover{
+.icon-container button:hover .fa-solid.fa-thumbs-up{
     color:rgb(0, 255, 60);
     cursor: pointer;
 }
 
-/* #endregion */
-
-/* #region --------------------------------------------           POST SHOW MORE          ---------------------------------------------        -----*/
-
-.show-more{
-    margin-top: 10px;
+.filters-container{
     display: flex;
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 5px;
-    gap: 5px;
+    align-items: center;
+    position: relative;
+    gap: 20px;
+    padding: 0px 0px 20px 0px;
 }
 
-.show-more:hover{
-    background-color: hsla(240, 2%, 35%);
+.filters-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filters-wrapper button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    background: none;
+    border: 1px solid gray;
     border-radius: 20px;
-}
-/* #endregion */
-
-/* #region   ------------------------------------------           SECOND ASIDE            ---------------------------------------------------             */
-
-.second-aside{
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    background-color: var(--row-color);   
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: transform 0.3s ease-in-out;
-    border-top: none;
-    border-right: none;
-    width: 25%;
-    min-width: 300px;
+    padding: 5px 15px;
 }
 
-
-
-.second-aside h1{
-    text-align: center;
-    padding: 10px;
-    background-color: var(--titles-color);
-}
-
-.articleCard{
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.articleCard:hover{
-    background-color: var(--dashboard-hover);
-}
-
-.articleImage{
-    width: 100%;
-}
-
-.articleCard span{
-    display: block;
-    font-size: 17px;
-    padding: 10px;
-}
-
-.articleCard h2{
-    font-size: 15px;
-    padding: 3px;
-    text-align: center;
-    background-color: var(--titles-color);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.news-closingBtn{
-    display: none;
-    justify-content: flex-start;
+.filters-dropdown{
     border: none;
     background: none;
-    cursor: pointer;
-    gap: 5px;
-    padding: 5px;
+    pointer-events: none;
 }
 
+.filters-dropdown i{
+    font-size: 1rem;
+    display: none;
+}
+
+
+.isolated-li{
+    margin-left: auto;
+}
+
+.forum-sidebar-toggle{
+    display: none;
+    background: none;
+    align-self: flex-end;
+    border: none;
+    padding: 5px 5px;
+}
 
 
 /* #endregion */
 
 /* #region   ------------------------------------------           MEDIA QUERIES           ---------------------------------------------------             */
 
-@media (max-width: 900px){
+@media (max-width: 1100px){
 
-    .forum-container{
-        width: 100%;
+       .navigation-block button{
+        background: none;
+        border: none;
     }
 
-    .news-Btn2{
-        display: flex;   
-    }
-
-    main{
-        flex-direction: column;
-    }
-
-    .card{
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-
-    #newPost{
-        margin-left: 0px;
-    }
-
-    .second-aside{
-        position: fixed;
-        top: 60px;
-        right: 0px;
-        transform: translateX(100%);
-        width: 300px;
-        height: calc(100vh - 60px);
-        overflow-y: auto;
-        z-index: 10;
-        border-left: none;
-    }
-
-    .second-aside h1{
+    nav{
         display: none;
     }
 
-    .news-closingBtn{
-        display: flex;
-    }
-
-    #searchBar{
-        width: 100%;
-       
-    
-    }
-    
-}
-
-@media (max-width: 550px){
-
-    .news-Btn2{
+    .right-aside{
         display: none;
-    }
-
-    .news-Btn1{
-        display: flex;
-    }
-
-    #searchingBar{
-        flex-direction: column-reverse;
-    }
-
-
-    #newPost{
-        width: 100%;
-        justify-content: flex-start;  
         
     }
 
-    .forum-container{ 
-        padding: 0px;
+    .desktop-hidden.right{
+        display: flex;
+        align-items: center;
     }
 
-    .buttons-container{
-        width: 100%;
-    
+    .navigation-block{
+        justify-content: flex-start;
+        align-items: center;
+
     }
-    
+
 }
 
+@media (max-width: 800px){
+
+    .forum-sidebar-toggle{
+        display: block;
+    }
+
+ 
+
+    .navigation-block{
+
+        padding: 20px 0px 0px 0px;
+    }
+
+    .desktop-hidden.left{
+        display: flex;
+        align-items: center;
+    }
+
+    .left-aside{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        transform: translateX(-100%);
+        z-index: 20;
+        background-color: black;
+        max-width: 300px;
+        padding: 20px;
+        background-color: hsl(0, 0%, 18%);
+        transition: transform 0.3s ease;
+        border-right: 1px solid gray;
+        padding: 10px;
+    }
+
+    #newPost *{
+        font-size: 1.1rem;
+    }
+
+    .navigation-block img{
+        display: none;
+    }
+
+    .filters-wrapper{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translateY(90%);
+        display: none;
+        flex-direction: column;
+        z-index: 10;
+        background-color: rgb(45, 45, 45);
+        align-items: center;
+        gap: 0px;
+     
+
+    }
+
+    .filters-wrapper button{
+        border-radius: 0px;
+        padding: 10px;
+        border: 1px solid gray;
+        width: 100%;
+    }
+
+    .filters-dropdown{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        padding: 5px 15px;
+        border: 1px solid gray;
+        border-radius: 20px;
+        pointer-events: auto;
+    }
+
+    .filters-dropdown span{
+        display: none;
+    }
+
+    .filters-dropdown i{
+        display: flex;
+    }
+
+    .header-wrapper span{
+        font-size: 1.1rem;
+    }
+
+
+
+
+}
+
+@media (max-width: 400px){
+
+    .cards-wrapper{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+    }
+
+    .isolated-li{
+        margin-left: 0px;
+    }
+
+    .header-wrapper{
+        flex-direction: column;
+
+    }
+
+
+
+}
 
 /* #endregion */
+
+.selected{
+    border-color: hsl(0, 0%, 57%);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px hsla(0, 0%, 58%, 0.3);
+    transition: all 0.2s ease;
+
+}
+
+.filters-wrapper button.active{
+    background-color: hsl(0, 0%, 23%);
+
+}
+
+.fs-16px{
+    font-size: 1rem;
+}
+
+.active{
+    display: flex;
+}
+
+.display-none{
+    display: none;
+}
+
+.translatePX{
+    transform: translateX(0%);
+}

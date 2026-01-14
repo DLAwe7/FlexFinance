@@ -1,62 +1,136 @@
-[
+{
+  "Investing": [
     {
-        "userName": "User_1",
-        "userImage": "defaultUserImage",
-        "postTitle": "The Balancing Act of Interest Rates",
-        "postContent": "Interest rates are a tricky subject right now. With the Fed trying to control inflation, it's a balancing act. If they raise rates too quickly, it could lead to a recession, but if they wait too long, inflation could spiral out of control. It's a tough call."
-    },
-    {
-        "userName": "User_2",
-        "userImage": "defaultUserImage",
-        "postTitle": "Universal Basic Income: A Necessary Change?",
-        "postContent":"I've been reading a lot about universal basic income lately. With automation and AI becoming more prominent, it might be something we need to seriously consider. Thoughts?"
-    },
-    {
-        "userName": "User_3",
-        "userImage": "defaultUserImage",
-        "postTitle": "Supply Chain Struggles Post-Pandemic",
-        "postContent": "Global supply chains are still struggling to recover post-pandemic. I'm curious to see how this plays out in the coming months—higher prices and shortages seem inevitable."
-    },
-    {
-        "userName": "User_4",
-        "userImage": "defaultUserImage",
-        "postTitle": "Cryptocurrency: Boom or Bust?",
-        "postContent": "Looking into crypto again, even with the market volatility. There's something intriguing about decentralized finance, but I'm still cautious with the amount of hype around it. Anyone here with real experience investing in crypto?"
-    },
-    {
-        "userName": "User_5",
-        "userImage": "defaultUserImage",
-        "postTitle": "The Housing Market Crisis",
-        "postContent": "The housing market is nuts right now. It feels impossible to find anything affordable, especially in larger cities. Something needs to change at the policy level to ensure homeownership is within reach for more people."
-    },
-    {
-        "userName": "User_6",
-        "userImage": "defaultUserImage",
-        "postTitle": "The Rise of Sustainable Investments",
-        "postContent": "One thing I find fascinating is the increasing interest in sustainable investments. People are starting to care more about the ethical implications of their investments. I wonder if this trend will continue as the climate crisis worsens."
-    },
-    {
-        "userName": "User_7",
-        "userImage": "defaultUserImage",
-        "postTitle": "The Impact of Job Growth on the Economy",
-        "postContent": "Has anyone else been tracking the latest job growth figures? I'm cautiously optimistic, but with wages still lagging behind inflation, I'm not sure how sustainable this is."
-    },
-    {
-        "userName": "User_8",
-        "userImage": "defaultUserImage",
-        "postTitle": "The Need for Minimum Wage Reform",
-        "postContent": "I think we need a major shift in how we approach minimum wage. The cost of living is skyrocketing, yet many workers are still making the same hourly wage from a decade ago. It's time for policy change!"
-    },
-    {
-        "userName": "User_9",
-        "userImage": "defaultUserImage",
-        "postTitle": "AI and Job Displacement",
-        "postContent": "AI is advancing at an incredible rate. While it's exciting, I'm worried about the potential job losses.How do we ensure workers aren't left behind as automation becomes more widespread?"
-    },
-    {
-        "userName": "User_10",
-        "userImage": "defaultUserImage",
-        "postTitle": "The Future of Remote Work",
-        "postContent": "Remote work became the norm during the pandemic, but now many companies are pushing for a return to office. Is hybrid work the best compromise, or should we fight to keep remote work an option for everyone?"
+      "id": "post_1",
+      "userName": "User_1",
+      "category": "Investing",
+      "userImage": "defaultUserImage",
+      "postTitle": "Interest Rates and Investment Strategies",
+      "postContent": "With rates rising, I'm rethinking where to allocate my investments. Bonds yield more now, but equities still have potential. Anyone adjusting their portfolio accordingly?",
+      "likes": 248,
+      "dislikes": 32,
+      "comments": 14,
+      "publishedAt": "2025-09-15T10:42:00Z"
     }
-]
+  ],
+  "AI & Tech": [
+    {
+      "id": "post_2",
+      "userName": "User_2",
+      "category": "AI & Tech",
+      "userImage": "defaultUserImage",
+      "postTitle": "Automation in the Workplace",
+      "postContent": "I've noticed our team has started using automation tools to reduce repetitive tasks. It's efficient, but I'm curious about how others are adapting without cutting staff.",
+      "likes": 315,
+      "dislikes": 19,
+      "comments": 22,
+      "publishedAt": "2025-09-12T11:08:00Z"
+    },
+    {
+      "id": "post_9",
+      "userName": "User_9",
+      "category": "AI & Tech",
+      "userImage": "defaultUserImage",
+      "postTitle": "AI Tools in Daily Work",
+      "postContent": "I've started using AI tools to speed up analysis tasks. It's helpful, but I'm monitoring accuracy closely. Anyone else integrating AI in practical, low-risk ways?",
+      "likes": 401,
+      "dislikes": 27,
+      "comments": 19,
+      "publishedAt": "2025-09-27T13:22:00Z"
+    }
+  ],
+  "Personal Finance": [
+    {
+      "id": "post_3",
+      "userName": "User_3",
+      "category": "Personal Finance",
+      "userImage": "defaultUserImage",
+      "postTitle": "Supply Chain Delays and Planning",
+      "postContent": "My business has been impacted by shipping delays. Trying to adjust orders and inventory planning, but it's tricky. How are others handling long lead times?",
+      "likes": 152,
+      "dislikes": 11,
+      "comments": 9,
+      "publishedAt": "2025-05-01T11:45:00Z"
+    },
+    {
+      "id": "post_8",
+      "userName": "User_8",
+      "category": "Personal Finance",
+      "userImage": "defaultUserImage",
+      "postTitle": "Wage Trends and Budgeting",
+      "postContent": "I noticed wages have increased, but so have costs in some areas. For personal budgeting, I'm tracking monthly expenses carefully and investing surplus into high-yield accounts.",
+      "likes": 289,
+      "dislikes": 21,
+      "comments": 17,
+      "publishedAt": "2025-03-25T12:34:00Z"
+    },
+    {
+      "id": "post_10",
+      "userName": "User_10",
+      "category": "Personal Finance",
+      "userImage": "defaultUserImage",
+      "postTitle": "Remote Work Preferences",
+      "postContent": "My team is experimenting with hybrid work. Some employees thrive remotely while others prefer the office. Trying to find the right balance has been a challenge but improves productivity overall.",
+      "likes": 233,
+      "dislikes": 18,
+      "comments": 12,
+      "publishedAt": "2025-02-13T13:10:00Z"
+    }
+  ],
+  "Cryptocurrencies": [
+    {
+      "id": "post_4",
+      "userName": "User_4",
+      "category": "Cryptocurrencies",
+      "userImage": "defaultUserImage",
+      "postTitle": "Crypto Volatility",
+      "postContent": "I've been trading crypto cautiously. Prices swing so much that I now focus on risk management rather than chasing gains. Anyone else have strategies to minimize losses?",
+      "likes": 317,
+      "dislikes": 44,
+      "comments": 25,
+      "publishedAt": "2025-01-15T11:55:00Z"
+    }
+  ],
+  "Real Estate": [
+    {
+      "id": "post_5",
+      "userName": "User_5",
+      "category": "Real Estate",
+      "userImage": "defaultUserImage",
+      "postTitle": "Housing Market Observations",
+      "postContent": "I've been tracking property prices in major cities. It's competitive, but focusing on emerging suburbs seems more practical than trying to find a deal downtown.",
+      "likes": 189,
+      "dislikes": 16,
+      "comments": 8,
+      "publishedAt": "2025-09-30T12:05:00Z"
+    }
+  ],
+  "Sustainability": [
+    {
+      "id": "post_6",
+      "userName": "User_6",
+      "category": "Sustainability",
+      "userImage": "defaultUserImage",
+      "postTitle": "Green Investments Paying Off",
+      "postContent": "I've started allocating some capital into renewable energy ETFs. Returns are stable and align with my long-term plan. Anyone else exploring sustainable assets purely from an investment perspective?",
+      "likes": 276,
+      "dislikes": 14,
+      "comments": 11,
+      "publishedAt": "2025-08-10T12:20:00Z"
+    }
+  ],
+  "Finance": [
+    {
+      "id": "post_7",
+      "userName": "User_7",
+      "category": "Finance",
+      "userImage": "defaultUserImage",
+      "postTitle": "Job Growth Analysis",
+      "postContent": "Looking at recent employment figures, tech and healthcare show strong growth. Planning hiring around those sectors has been fruitful. Curious about strategies from other small businesses.",
+      "likes": 341,
+      "dislikes": 23,
+      "comments": 16,
+      "publishedAt": "2025-04-13T12:50:00Z"
+    }
+  ]
+}

@@ -1,195 +1,201 @@
 main{
     display: flex;
-    align-items: center;
     flex-direction: column;
-    width: 80%;
-    background-color: var(--general-bg-color);
+
+    padding: 2rem;
+    gap: 2rem;
+
 }
 
-
-.wallet-info{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.balance-block{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--general-bg-color);
-}
-
-.temp-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;  
-    background-color: var(--row-color);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.test-container{
+.wallet-sections-wrapper{
+    align-items: flex-start;
     display: flex;
     width: 100%;
+    gap: 2rem;
 }
 
-.wallet-list{
+.possessed-cryptos-section{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    width: 50%;
+    gap: 20px;
+    width: 100%;
 }
 
-
-.balanceH1{
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    background-color: var(--titles-color);
+.portfolio-value{
+    text-align: center;
 }
 
-.test-containerP{
+.transactions-section{
     display: flex;
+    flex-direction: column;
     width: 100%;
+}
+
+.possessed-cryptos-section h2,
+.transactions-section h2{
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.graph-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.graph-container{
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 20%;
-    padding: 20px;
+}
 
+.summary-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: hsla(0, 0%, 12%, 0.609);
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 500;
+  color: #ddd;
+}
+
+.summary-bar span{
+    text-align: center;
 }
 
 .wallet-doughnut{
     width: 100%;
-    height: 100%;
-    padding: 20px;
+
 }
 
-.balance-blockList{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#html-legend {
     width: 100%;
-    padding: 20px;
-    flex-grow: 1;
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.balance-blockList:nth-of-type(2n){
-    background-color: var(--row-color);
-}
-
-.balance-blockList span{
+    list-style: none;
     display: flex;
-    gap: 10px
-}
-
-.wallet-cryptoList{
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    width: 100%;
+    gap: 1rem;
+    font-family: sans-serif;
+    color: #ccc;
 }
 
-.crypto-redirect{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: var(--hover-color);
-    width: 100%;
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px;
+#html-legend li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
 }
 
-.crypto-redirect a{
+.little-box{
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+    margin-top: 1rem;
+    border: 1px solid rgb(85, 85, 85);
+
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 1rem;
     text-align: center;
-    margin-right: 10px;
-    border-radius: 20px;
-    padding: 5px;
 }
 
-.crypto-redirect a:hover{
-    background-color: var(--general-bg-color);
-    transition: 0.15s;
+.transactions-table thead th {
+    background-color: hsla(0, 0%, 0%, 0.37);
+    font-weight: 600;
 }
 
-.crypto-listContainer{
-    width: 100%;
+.transactions-table tbody tr:nth-child(odd) {
+    background-color: hsla(0, 0%, 25%, 0.903);
 }
 
-.crypto-list{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
+.transactions-table tbody tr:nth-child(even) {
+    background-color: hsla(0, 0%, 15%, 0.903);
 }
 
-.crypto-list:nth-of-type(2n){
-    background-color: var(--row-color);
-}
-
-.crypto-list img{
-    width: 50px;
-}
-
-.crypto-name{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
+.transactions-table td:last-child {
+    text-align: right;
 }
 
 
-/* ------------------------- */
-
-.yellow-color{
-    color: hsl(60, 100.00%, 49.60%);
-}
-
-.red-color{
-    color: hsl(347, 52.90%, 36.70%);
-}
-
-.blue-color{
-    color: hsl(204, 64.20%, 24.10%);
-}
-
-.green-color{
-    color: hsl(94, 72.50%, 21.40%);
-}
-
-.balance-displayer{
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: var(--titles-color);
-}
-
-@media (max-width: 900px){
-    .test-container{
+@media (max-width: 1320px){
+    
+    .wallet-sections-wrapper{
         flex-direction: column;
     }
 
-    .wallet-list{
+    .possessed-cryptos-section{
         width: 100%;
     }
-    
-    .temp-container{
+
+    .transactions-section{
+        width: 100%;
+    }
+
+    .graph-wrapper{
+        flex-direction: row;
+        align-items: flex-start;
+        margin: 0 auto;
+        gap: 5rem;
+    }
+
+    #html-legend{
+        width: 300px;
+    }
+
+}
+
+
+@media (max-width: 700px){
+
+    .graph-wrapper{
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    #html-legend{
         width: 100%;
     }
 
     main{
-        width: 100%;
+        padding: 1rem;
     }
+
+    .wallet-table-wrapper{
+        overflow-x: auto;
+    }
+
+    .transactions-table{
+        min-width: 650px;
+    }
+}
+
+@media (max-width: 500px){
+
+
+    #html-legend{
+        display: none;
+    }
+
+    main{
+        padding: 10px;
+    }
+
 }
