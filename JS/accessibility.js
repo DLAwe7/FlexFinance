@@ -41,10 +41,9 @@ export function handleClickOutside(event){
 
       const buttons = document.querySelectorAll(`[aria-controls="${elementId}"]`);
 
-      const clickOnButton = Array.from(buttons).some(btn => btn.contains(event.target));
       const clickInsideElement = element.contains(event.target);
 
-      if(element.classList.contains(toggleClass) && (clickOnButton || !clickInsideElement)){
+      if(element.classList.contains(toggleClass) && !clickInsideElement){
           
         element.classList.remove(toggleClass);
         buttons.forEach(button => toggleAriaExpanded(button));

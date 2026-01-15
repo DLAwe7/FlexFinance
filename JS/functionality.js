@@ -25,7 +25,7 @@ export function toggleMenu(button){
     event.stopPropagation();
     toggleMeu(element); }); 
 
-    Required format: data-toggle-class="" class="toggleable" 
+    Required format: data-toggle-class="" class="toggleable" data-use-inert
 */
 
 
