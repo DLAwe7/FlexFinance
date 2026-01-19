@@ -13,8 +13,8 @@ export function handleEsc(event){
                 element.classList.remove(toggleClass);
                 toggleAriaExpanded(element);
 
-                if (element.dataset.useInert !== undefined) {
-                  inertToggle(element, true);
+                if (element.hasAttribute("data-use-inert")) {
+                  inertToggle(element, false);
                 }
               }
         });
@@ -50,8 +50,8 @@ export function handleClickOutside(event){
           
         element.classList.remove(toggleClass);
         buttons.forEach(button => toggleAriaExpanded(button));
-         if (element.dataset.useInert !== undefined) {
-          inertToggle(element, true);
+         if (element.hasAttribute("data-use-inert")) {
+          inertToggle(element, false);
         }
       }
   });

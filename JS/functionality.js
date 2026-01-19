@@ -14,7 +14,7 @@ export function toggleMenu(button){
 
     toggleAriaExpanded(button);
 
-    if (element.dataset.useInert !== undefined) {
+    if (element.hasAttribute("data-use-inert")) {
         inertToggle(element, isOpen);
     }
 
