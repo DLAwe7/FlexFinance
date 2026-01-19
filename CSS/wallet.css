@@ -19,6 +19,7 @@ main{
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    border-radius: 20px;
 }
 
 .portfolio-value{
@@ -117,7 +118,7 @@ main{
 }
 
 .transactions-table thead th {
-    background-color: hsla(0, 0%, 0%, 0.37);
+    background-color: hsla(0, 0%, 13%, 0.37);
     font-weight: 600;
 }
 
@@ -126,7 +127,7 @@ main{
 }
 
 .transactions-table tbody tr:nth-child(even) {
-    background-color: hsla(0, 0%, 15%, 0.903);
+    background-color: hsla(0, 0%, 20%, 0.903);
 }
 
 .transactions-table td:last-child {

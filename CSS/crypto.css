@@ -66,12 +66,16 @@ main{
     flex-direction: column;
 }
 
+.cryptos-list.open{
+    display: flex;
+}
+
 .cryptos-list img{
     width: 50px;
 }
 
 .crypto-card{
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
@@ -83,6 +87,10 @@ main{
 
 .crypto-card:nth-of-type(2n){
     background-color: var(--alternated-row-color);
+}
+
+.crypto-card.open{
+    display: flex;
 }
 
 .crypto-text{

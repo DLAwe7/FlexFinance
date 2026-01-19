@@ -239,7 +239,7 @@ function renderPost(value){
 
                 const postIMG = document.createElement("img");
 
-                    postIMG.src = `./Assets/${value.userImage}.webp`;
+                    postIMG.src = `../Assets/${value.userImage}.webp`;
                     postIMG.alt = `${value.userName} image`;
                     postIMG.classList.add("forumImage")
 

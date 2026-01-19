@@ -30,20 +30,26 @@ function renderTransactions(data) {
     const table = document.querySelector(".transactions-history");
 
     table.innerHTML = `
-        <tr id="rowTitle">
-            <th role="button" tabindex="0" data-column="date" aria-label="Sort by date" aria-sort="none">
-                Date <i class="fa-solid fa-sort" aria-hidden="true"></i>
-            </th>
-            <th role="button" tabindex="0" data-column="reason" aria-label="Sort by reason" aria-sort="none">
-                Reason <i class="fa-solid fa-sort" aria-hidden="true"></i>
-            </th>
-            <th role="button" tabindex="0" data-column="amount" aria-label="Sort by transaction" aria-sort="none">
-                Transaction <i class="fa-solid fa-sort" aria-hidden="true"></i>
-            </th>
-        </tr>
+        <thead>
+            <tr id="rowTitle">
+                <th role="columnheader" tabindex="0" data-column="date" aria-label="Sort by date" aria-sort="none">
+                    Date <i class="fa-solid fa-sort" aria-hidden="true"></i>
+                </th>
+                <th role="columnheader" tabindex="0" data-column="reason" aria-label="Sort by reason" aria-sort="none">
+                    Reason <i class="fa-solid fa-sort" aria-hidden="true"></i>
+                </th>
+                <th role="columnheader" tabindex="0" data-column="amount" aria-label="Sort by transaction" aria-sort="none">
+                    Transaction <i class="fa-solid fa-sort" aria-hidden="true"></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
     `;
 
     const dataToShow = data.slice(0, visibleCount);
+
+    const tbody = table.querySelector("tbody");
 
     dataToShow.forEach(item => {
         const sign = item.expense ? "-" : "+";
@@ -56,7 +62,7 @@ function renderTransactions(data) {
             <td>${sign} ${formatNumber(item.amount)}${item.currency}</td>
         `;
 
-        table.append(row);
+        tbody.append(row);
     });
 
     handleLoadMoreButton(data);

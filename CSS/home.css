@@ -1,6 +1,6 @@
 body{
     background-repeat: no-repeat;
-    background-image: linear-gradient(to right, hsla(0, 0%, 0%, 0.338), hsla(0, 0%, 0%, 0.924)), url('/Assets/home-background-image.jpg');
+    background-image: linear-gradient(to right, hsla(0, 0%, 0%, 0.338), hsla(0, 0%, 0%, 0.924)), url('../Assets/home-background-image.jpg');
     background-size: cover;
     background-position: top 100%;
     background-attachment: fixed;
@@ -392,7 +392,7 @@ main{
 
 .user-review{
     background-repeat: no-repeat;
-    background-image: linear-gradient(to left, hsla(0, 0%, 0%, 0.338) 50%, hsla(0, 0%, 0%, 0.924) 75%), url('/Assets/user-review-img1.jpg');
+    background-image: linear-gradient(to left, hsla(0, 0%, 0%, 0.338) 50%, hsla(0, 0%, 0%, 0.924) 75%), url('../Assets/user-review-img1.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -421,7 +421,7 @@ main{
 
 .user-review.alternated{
 
-    background-image: linear-gradient(to left, hsla(0, 0%, 0%, 0.338) 50%, hsla(0, 0%, 0%, 0.924) 75%), url('/Assets/user-review-img2.jpeg');
+    background-image: linear-gradient(to left, hsla(0, 0%, 0%, 0.338) 50%, hsla(0, 0%, 0%, 0.924) 75%), url('../Assets/user-review-img2.jpeg');
 
 }
 

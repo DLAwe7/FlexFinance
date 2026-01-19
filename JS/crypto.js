@@ -121,38 +121,41 @@ const searchInput = document.getElementById("crypto-searcher");
 const dropdown = document.querySelector(".cryptos-list");
 
 searchInput.addEventListener("input", filterCryptos);
-searchInput.addEventListener("click", showCryptoMenu); 
+searchInput.addEventListener("click", (event) => {
+  event.stopPropagation();
+  showCryptoMenu();
+}); 
 
 function showCryptoMenu(){
-  dropdown.style.display = "block";
-  searchInput.setAttribute("aria-expanded", "true");
 
+  if (!dropdown.classList.contains("open")){
+    dropdown.classList.add("open");
+    searchInput.setAttribute("aria-expanded", "true");
+
+  }
+
+  filterCryptos();
 }
 
 function filterCryptos(){
 
   const inputValue = searchInput.value.trim().toLowerCase();
 
-  if(inputValue !== ""){
-    dropdown.style.display = "flex";
-  } else{
-    dropdown.style.display = "none";
-    searchInput.setAttribute("aria-expanded", "false");
-  }
-
   document.querySelectorAll(".crypto-card").forEach(card => {
 
     const cardID = card.id.toLowerCase();
     const cardName = card.getAttribute("data-name").toLowerCase();
 
-    if(cardID.includes(inputValue) || cardName.includes(inputValue)){
-      card.style.display = "flex";
-      searchInput.setAttribute("aria-expanded", "true");
-    }else{
-      card.style.display = "none";
+    if (
+      inputValue === "" ||
+      cardID.includes(inputValue) ||
+      cardName.includes(inputValue)
+    ) {
+      card.classList.add("open");
+    } else {
+      card.classList.remove("open");
     }
-
-  })
+  });
 };
 
 document.querySelector(".cryptos-list").addEventListener("click", (event) => {
@@ -170,8 +173,9 @@ document.querySelector(".cryptos-list").addEventListener("click", (event) => {
 
   displayGraph(cardId);
 
-  dropdown.style.display = "none";
+  dropdown.classList.remove("open");
   searchInput.setAttribute("aria-expanded", "false");
+  searchInput.value = "";
 
 });
 
@@ -238,4 +242,52 @@ async function displayGraph(cryptoCoin) {
 }   
 
 
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown") {
+    const first = dropdown.querySelector(".crypto-card.open");
+    if (first) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+});
 
+function getVisibleCards() {
+  return Array.from(
+    dropdown.querySelectorAll(".crypto-card.open")
+  );
+}
+
+dropdown.addEventListener("keydown", (e) => {
+  const cards = getVisibleCards();
+  if (!cards.length) return;
+
+  const currentIndex = cards.indexOf(document.activeElement);
+
+  switch (e.key) {
+    case "ArrowDown": {
+      e.preventDefault();
+      const next = cards[currentIndex + 1] || cards[0];
+      next.focus();
+      break;
+    }
+
+    case "ArrowUp": {
+      e.preventDefault();
+      const prev = cards[currentIndex - 1] || cards[cards.length - 1];
+      prev.focus();
+      break;
+    }
+
+    case "Enter": {
+      e.preventDefault();
+      document.activeElement.click();
+      break;
+    }
+
+    case "Escape": {
+      searchInput.focus();
+      break;
+    }
+  }
+});
